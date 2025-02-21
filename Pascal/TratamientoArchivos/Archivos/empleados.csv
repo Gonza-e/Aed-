@@ -1,0 +1,64 @@
+planta;categoria;cantidad_empleados
+Buenos Aires;Oficina;25
+Buenos Aires;Oficina;18
+Buenos Aires;Oficina;12
+Buenos Aires;Oficina;20
+Buenos Aires;Oficina;15
+Buenos Aires;Logistica;30
+Buenos Aires;Logistica;10
+Formosa;Logistica;10
+Formosa;Logistica;8
+Formosa;Logistica;6
+Formosa;Logistica;12
+Formosa;Revision;9
+Formosa;Revision;14
+Formosa;Revision;5
+Resistencia;Revision;14
+Resistencia;Revision;10
+Resistencia;Revision;8
+Resistencia;Revision;15
+Resistencia;CRevision;12
+Resistencia;Revision;20
+Resistencia;Revision;7
+Corrientes;Revision;12
+Corrientes;Revision;9
+Corrientes;Revision;7
+Corrientes;Envios;14
+Corrientes;Envios;10
+Corrientes;Envios;18
+Corrientes;Envios;6
+Entre Rios;Envios;11
+Entre Rios;Envios;7
+Entre Rios;Envios;5
+Entre Rios;Envios;13
+Entre Rios;Envios;8
+Entre Rios;Conductores;16
+Entre Rios;Conductores;6
+Catamarca;Conductores;9
+Catamarca;Conductores;6
+Catamarca;Conductores;4
+Catamarca;Conductores;10
+Catamarca;Conductores;7
+Catamarca;Conductores;12
+Catamarca;Conductores;5
+Salta;Conductores;13
+Salta;Atencion;10
+Salta;Atencion;6
+Salta;Atencion;14
+Salta;Atencion;9
+Salta;Atencion;18
+Salta;Atencion;7
+San Juan;Atencion;12
+San Juan;Atencion;8
+San Juan;Atencion;6
+San Juan;Atencion;11
+San Juan;Atencion;8
+San Juan;Atencion;15
+San Juan;Tutorias;5
+Jujuy;Tutorias;10
+Jujuy;Tutorias;7
+Jujuy;Tutorias;5
+Jujuy;Tutorias;12
+Jujuy;Tutorias;8
+Jujuy;Tutorias;14
+Jujuy;Tutorias;6
