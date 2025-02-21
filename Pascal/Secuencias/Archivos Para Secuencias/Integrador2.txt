@@ -1,0 +1,2 @@
+A1234LMaterial_XYZ#150Enbuenestado,listoparasuuso    B5678LCompuesto_A#075Almacenadoencondicionesóptimas     C9101PMaterial_Secreto#200Usorestringido,requiereautorización   D2345BPolimero_Ref#050Disponibleparapruebasdelaboratorio              E6789LMetalurgiaX#120Resistenteaaltastemperaturas  F1357PAlloy_45Z#300Enesperadeinspeccióntécnica                                  
+                               

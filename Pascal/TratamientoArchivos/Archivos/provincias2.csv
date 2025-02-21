@@ -1,0 +1,32 @@
+provincia;nombre_jefe;oficinas;cant_empleados
+Buenos Aires;Juan Perez;3;120
+Buenos Aires;Juan Perez;5;80
+Buenos Aires;Juan Perez;2;45
+Buenos Aires;Juan Perez;4;60
+Buenos Aires;Jose Fernandez;6;100
+Buenos Aires;Jose Fernandez;1;30
+Buenos Aires;Jose Fernandez;3;75
+Buenos Aires;Jose Fernandez;2;40
+La Pampa;Jose Fernandez;4;55
+La Pampa;Jose Fernandez;5;90
+La Pampa;Jose Fernandez;6;110
+La Pampa;Diego Rios;2;35
+La Pampa;Diego Rios;3;50
+Tierra del Fuego;Diego Rios;1;20
+Tierra del Fuego;Diego Rios;4;70
+Tierra del Fuego;Diego Rios;5;85
+Tierra del Fuego;Silvina Herrera;3;60
+Formosa;Silvina Herrera;2;30
+Formosa;Silvina Herrera;4;65
+Formosa;Silvina Herrera;5;95
+Formosa;Silvina Herrera;1;25
+Formosa;Daniel Fuentes;6;120
+Formosa;Daniel Fuentes;2;45
+Formosa;Daniel Fuentes;3;55
+Viedma;Daniel Fuentes;4;80
+Viedma;Daniel Fuentes;5;100
+Viedma;Leonardo Figueroa;6;110
+Viedma;Leonardo Figueroa;2;40
+Viedma;Leonardo Figueroa;3;75
+Viedma;Leonardo Figueroa;1;30
+Viedma;Leonardo Figueroa;4;85
