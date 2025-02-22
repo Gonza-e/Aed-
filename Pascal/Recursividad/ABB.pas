@@ -50,8 +50,8 @@ begin
 
   	// Pedimos valores al usuario hasta que ingrese un número negativo
   	repeat 
-    	writeln('Ingrese un valor:');
-    	readln(num); 
+    	    writeln('Ingrese un valor:');
+    	    readln(num); 
 
 	    if num > 0 then
 	    begin 
