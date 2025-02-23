@@ -37,7 +37,7 @@ begin
 
     Close(sec);
     
-        porcentaje := (cont / contgral) * 100;
-
+    porcentaje := (cont / contgral) * 100;
+    readln;
     //WriteLn('El porcentaje de aprobados es de: ', porcentaje:0:2);
 end.
