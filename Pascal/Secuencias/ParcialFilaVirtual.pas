@@ -65,4 +65,6 @@ begin
   Close(sec2);
   Close(salida);
   WriteLn('La cantidad de usuarios que abandonaron es de: ',cant_abandono);
+
+  readln;
 end.
