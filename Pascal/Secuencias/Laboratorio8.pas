@@ -99,4 +99,6 @@ begin
   Close(sec);
   porc:= (autos_cumple/autos_total) * 100;
   WriteLn('El porcentaje de autos que cumplen con la condicion es de: ',porc:0:2,'%');
+
+  readln;
 end. 
