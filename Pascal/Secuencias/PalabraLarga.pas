@@ -34,4 +34,6 @@ begin
   end;
   Close(sec);
   WriteLn('La palabra mas larga cuenta con: ',palabra_larga,' letras');
+
+  readln;
 end.
