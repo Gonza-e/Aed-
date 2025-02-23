@@ -70,4 +70,6 @@ begin
   WriteLn('La cantidad de participantes que superan la edad es de: ',sisupera);
   WriteLn('La cantidad de participantes que no superan la edad es de: ',nosupera);
   WriteLn('La cantidad de participantes de estas delegaciones son: ',cant_participantes);
+
+  readln;
 end.
