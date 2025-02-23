@@ -35,4 +35,6 @@ begin
   WriteLn('El promedio de edad de adultos de entre 15 y 64 años es de: ',prom:0:1);
   {WriteLn(edad);
   WriteLn(cant_adultos);}
+
+  readln;
 end.
