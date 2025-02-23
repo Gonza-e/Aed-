@@ -51,4 +51,5 @@ begin
   end;
   WriteLn('La cantidad de productos que superan los 400$ es de: ',cant_supera);
   Close(sec);
+  readln;
 end.
