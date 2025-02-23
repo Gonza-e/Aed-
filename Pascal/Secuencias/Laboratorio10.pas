@@ -56,4 +56,6 @@ begin
   Close(sec);
   porc:= (cant_aprobados/cant_total)*100;
   WriteLn('El porcentaje de alumnos aprobados es de: ',porc:0:2,'%');
+  
+  readln;
 end. 
