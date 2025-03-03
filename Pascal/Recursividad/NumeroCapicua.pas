@@ -21,7 +21,6 @@ var
     	else
     	begin
         	capicua := capicua(num1 div 10, (num2 * 10) + (num1 mod 10), num1_res);  
-		end;
 	end;
 
 begin	

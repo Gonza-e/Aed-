@@ -77,4 +77,6 @@ begin
   WriteLn('El importe promedio es de: ',prom:0:1);
   WriteLn('Importe: ',importe,'$');
   WriteLn('Ventas: ',ventas);
+
+  readln;
 end.

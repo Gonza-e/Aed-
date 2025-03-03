@@ -82,4 +82,6 @@ begin
   WriteLn('Personas que cumplen: ',cumplen);
   WriteLn('Personas totales: ',total_personas);
   Close(sec);
+
+  readln;
 end.

@@ -66,6 +66,8 @@ begin
   WriteLn('Operaciones: ',operaciones);
   WriteLn('Operaciones no validas: ',op_deposito_novalidas);
   Close(sec);
+
+  readln;
 end.
 
 

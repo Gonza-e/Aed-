@@ -58,19 +58,6 @@ begin
         Read(sec,v);
         Read(sec,v);
         Read(sec,v);
-    
-        {for i:= 4 downto 1 do 
-        begin
-        if (anio = ' ') then
-        begin
-            anio:= v;
-        end else 
-        begin
-            anio:= anio + v;  
-        end;
-        Read(sec,v);
-        //ensec:= True;
-        end;}
 
         anio_int:= anio_int + conv_entero(v) * 1000;
         Read(sec,v);
@@ -80,7 +67,6 @@ begin
         Read(sec,v);
         anio_int:= anio_int + conv_entero(v);
 
-        //anio_int:= strtoint(anio);
         WriteLn(anio_int);  
         autos_total+=1;
 
@@ -89,7 +75,6 @@ begin
         autos_cumple+=1;
         end;
         anio_int:= 0;
-        //anio:= ' ';
 
         {WriteLn(autos_total);
         WriteLn(autos_cumple);}
@@ -99,4 +84,6 @@ begin
   Close(sec);
   porc:= (autos_cumple/autos_total) * 100;
   WriteLn('El porcentaje de autos que cumplen con la condicion es de: ',porc:0:2,'%');
+
+  readln;
 end. 

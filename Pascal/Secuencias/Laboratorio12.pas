@@ -60,4 +60,5 @@ begin
   WriteLn('El porcentaje de viviendas que cumplen con las condiciones es de: ',porc:0:2,'%');
   {WriteLn(viviendas_total);
   WriteLn(viviendas_cumplen);}
+  readln;
 end. 

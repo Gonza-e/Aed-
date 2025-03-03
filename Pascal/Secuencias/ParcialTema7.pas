@@ -75,5 +75,7 @@ var
     prom:= cant_general / cant_pacientes;
     WriteLn('El total recaudado fue de: ',recaudado,'$');
     WriteLn('El promedio de estudios por paciente es de: ',prom:0:1);
+
+    readln;
   end.
 
