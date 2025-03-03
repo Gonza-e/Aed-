@@ -89,6 +89,7 @@ Accion Ejercicio2 es
 
 			p:= *p.prox 
 		FM 
+		Cerrar(arch)
 	FProceso 
 FAccion
 		 
