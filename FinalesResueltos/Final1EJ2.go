@@ -33,6 +33,21 @@ Accion Ejercicio2 es
 		fsi 
 	FP 
 
+	procedimiento calcularPuntos() es 
+		si ((reg.g_parciales_heroe1/2)+(reg.g_totales_heroe1)) < ((reg.g_parciales_heroe1/2)+(reg.g_totales_heroe1)) entonces 
+			*s.puntos:= *s.puntos + 5 
+			*p.puntos:= *p.puntos + 1 
+		sino 
+			si ((reg.g_parciales_heroe1/2)+(reg.g_totales_heroe1)) > ((reg.g_parciales_heroe1/2)+(reg.g_totales_heroe1)) entonces 
+				*p.puntos:= *p.puntos + 5
+				*s.puntos:= *s.puntos + 1 
+			sino 
+				*p.puntos:= *p.puntos + 2 
+				*s.puntos:= *s.puntos + 2
+			fsi 
+		fsi 
+	FP
+
 	menor: entero 
 	super: AN(15)
 
@@ -54,24 +69,15 @@ Accion Ejercicio2 es
 				*q.puntos:= 0
 				*q.prox:= prim; prim:= q 
 				s:= prim; p:= *prim.prox 
+
+				calcularPuntos()
 			sino 
 				actualizarNodo(p,reg.heroe1,reg.g_totales_heroe2)
 				actualizarNodo(s,reg.heroe2,reg.g_totales_heroe1)
 
-				si ((reg.g_parciales_heroe1/2)+(reg.g_totales_heroe1)) < ((reg.g_parciales_heroe1/2)+(reg.g_totales_heroe1)) entonces 
-					*s.puntos:= *s.puntos + 5 
-					*p.puntos:= *p.puntos + 1 
-				sino 
-					si ((reg.g_parciales_heroe1/2)+(reg.g_totales_heroe1)) > ((reg.g_parciales_heroe1/2)+(reg.g_totales_heroe1)) entonces 
-						*p.puntos:= *p.puntos + 5
-						*s.puntos:= *s.puntos + 1 
-					sino 
-						*p.puntos:= *p.puntos + 2 
-						*s.puntos:= *s.puntos + 2
-					fsi 
-				fsi 
+				calcularPuntos()
 			fsi 
-
+			
 			Leer(arch,reg)
 		FM 
 
