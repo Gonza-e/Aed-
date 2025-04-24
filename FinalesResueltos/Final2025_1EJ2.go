@@ -65,8 +65,7 @@ Accion Ejercicio2 es
 		Mientras NFDS(sec) y NFDA(arch) hacer 
 			Mientras v <> "*" hacer 
 				Mientras v <> "+" hacer 
-					numero:= numero + (conv_entero(v)*(10**i))
-					i:= i + 1 
+					numero:= numero * 10 + conv_entero(v)
 					Avz(sec,v)
 				FM 
 				Avz(sec,v) 
