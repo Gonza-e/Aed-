@@ -21,9 +21,9 @@ Accion final31 es
 		FM 
 
 		si arr1[i] <> arr2[i] entonces 
-			verificarCOD:= verdadero
+			verificarCOD:= falso
 		sino 
-			verificarCOD:= falso 
+			verificarCOD:= verdadero 
 		fsi 
 	FFuncion
 
