@@ -1,4 +1,4 @@
-Accion final28 es 
+Accion final28 (prim: puntero a nodo) es 
 
 	Arbol = registro 
 		dato: entero 
