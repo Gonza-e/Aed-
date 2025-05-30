@@ -52,7 +52,7 @@ Accion final29 es
 			si reg.cant_dias <= 3 entonces 
 				cant_x_duracion[1]:= cant_x_duracion + 1 
 			sino 
-				si (reg.cant_x_duracion > 3) y (reg.cant_x_duracion < 10) entonces 
+				si (reg.cant_dias > 3) y (reg.cant_dias < 10) entonces 
 					cant_x_duracion[2]:= cant_x_duracion[2] + 1 
 				sino 
 					cant_x_duracion[3]:= cant_x_duracion[3] + 1 
