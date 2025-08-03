@@ -110,10 +110,10 @@ Accion ejercicio1 es
             t_cobertura:= 0
         FM 
 
-        Cerrar(sec)
         Esc("Ingrese el nombre del paciente")
         Leer(nom_paciente)
-
+        Cerrar(sec)
+        
         p:= prim
         Mientras p <> nil y (nom_paciente <> *p.nombre) hacer
             p:= *p.prox 
@@ -123,7 +123,7 @@ Accion ejercicio1 es
         sino 
             Esc("Historia clinica: ",*p.hist," Tipo de cobertura: ",*p.tipo_cobertura," Dia: ",*p.dia)
         fsi 
-         
+
         Para i:= 1 a 19 hacer 
             Esc("Especialidad: ",i," Cantidad: ",A[i])
             si e_may < A[i] entonces 
