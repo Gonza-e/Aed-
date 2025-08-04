@@ -84,73 +84,80 @@ FinAccion
 
 Accion Ejercicio2 (A: arreglo[1...23] de AN) es
  Ambiente 
- VIAJES = registro 
-	 dni: N(8)
-	 fecha: Fecha
-	 p_destino: N(2)
-	 m_credito: N(10)
+	VIAJES = registro 
+		dni: N(8)
+		fecha: Fecha
+		p_destino: N(2)
+		m_credito: N(10)
 	FinRegistro
- viaje: archivo de VIAJES 
- reg_v: VIAJES 
- B: arreglo[1...13,1...24,1...2] de enteros 
- i, j, k, menor, prom, d_mas, d_menor, m_menor, mas: entero 
- des: AN
- Funcion obtener_destino(j:entero): AN 
-	 des:= j 
-	 Para i:= 1 a 23 hacer 
+	viaje: archivo de VIAJES 
+	reg_v: VIAJES 
+	B: arreglo[1...13,1...24,1...2] de enteros 
+	i, j, k, menor, prom, d_mas, d_menor, m_menor, mas: entero 
+	des: AN
+	Funcion obtener_destino(j:entero): AN 
+		des:= j 
+		Para i:= 1 a 23 hacer 
 	 	 	Si A[i] = des entonces
-			 Esc(A[i]) 
+				obtener_destino:= A[i] 
 			FinSi
 		FinPara
 	FinFuncion
- Proceso 
-	 Abrir E/(viaje)
-	 Leer(viaje,reg_v)
-	 menor:=HV; prom:=0; d_mas:=0; d_menor:=0; m_menor:=0; mas:=0
-	 Para k:= 1 a 2 hacer 
-	 	 Para i:= 1 a 13 hacer 
-		 	 Para i 1 a 24 hacer 
-			 	 B[i,j,k]:= 0 
+ 	Proceso 
+		Abrir E/(viaje)
+		Leer(viaje,reg_v)
+		menor:=HV; prom:=0; d_mas:=0; d_menor:=0; m_menor:=0; mas:=0
+		Para k:= 1 a 2 hacer 
+			Para i:= 1 a 13 hacer 
+				Para i 1 a 24 hacer 
+					B[i,j,k]:= 0 
 				FinPara
 			FinPara 
 		FinPara
-	 i:=0; j:=0; k:=0
-	 Mientras NFDA(viaje) hacer 
-		 k:=1
-		 i:= reg_v.fecha.mes 
-		 j:= reg_v.p_destino 
-		 B[i,j,k]:= B[i,j,k] + reg_v.m_credito
-		 B[13,j,k]:= B[13,j,k] + reg_v.m_credito
-		 B[i,24,k]:=B[i,24,k] + reg_v.m_credito
-		 B[13,24,1]:= B[13,24,1] + reg_v.m_credito
-		 k:= 2 
-		 B[i,j,k]:= B[i,j,k] + 1 
-		 B[13,j,k]:= B[13,j,k] + 1
-		 B[i,24,k]:= B[i,24,k] + 1
-		 Leer(viaje,reg_v)
+		i:=0; j:=0; k:=0
+		Mientras NFDA(viaje) hacer 
+			k:=1
+			i:= reg_v.fecha.mes 
+			j:= reg_v.p_destino 
+			B[i,j,k]:= B[i,j,k] + reg_v.m_credito
+			B[13,j,k]:= B[13,j,k] + reg_v.m_credito
+			B[i,24,k]:=B[i,24,k] + reg_v.m_credito
+			B[13,24,1]:= B[13,24,1] + reg_v.m_credito
+			k:= 2 
+			B[i,j,k]:= B[i,j,k] + 1 
+			B[13,j,k]:= B[13,j,k] + 1
+			B[i,24,k]:= B[i,24,k] + 1
+			Leer(viaje,reg_v)
 		FinMientras
-	 Para k:= 1 a 2 hacer 
-	 	 Para i:= 1 a 13 hacer 
-		 	 Para j:= 1 a 24 hacer 
+		Para k:= 1 a 2 hacer 
+			Para i:= 1 a 13 hacer 
+				Para j:= 1 a 24 hacer 
 			 	 	Si B[i,j,1] < menor entonces 
-					 menor:= B[i,j,1]
-					 d_menor:= j
-					 m_menor:= i 
+						menor:= B[i,j,1]
+						d_menor:= j
+						m_menor:= i 
 					FinSi
-				 Esc("Montos por destino",obtener_destino(j),"en el mes",i, B[i,j,1],"$")
-				 Esc("Cantidad de viajes por destino",obtener_destino(j),"por mes",i, B[2,j,k])
+
+					Esc("Montos por destino",obtener_destino(j),"en el mes",i, B[i,j,1],"$") // consigna 1
+					Esc("Cantidad de viajes por destino",obtener_destino(j),"en el mes",i, B[i,j,2]) // consigna 1
+
 				 	Si B[11,j,2] > d_mas entonces 
-					 d_mas:= B[11,j,2]
-					 mas:= j
+						d_mas:= B[11,j,2]
+						mas:= j
 					FinSi
-				 prom:= (B[i,24,1]/B[13,24,1])*100
-				 Esc("Promedio en el mes",i,"es de",prom,"%")
+
+					Si i <> 13 entonces 
+						prom:= (B[i,24,1]/B[13,24,1])
+						Esc("Promedio en el mes",i,"es de",prom) // consigna 3
+					Fsi 
+
 				FinPara
 			FinPara 
 		FinPara 
-	 j:= mas 
-	 Esc("El destino mas elegido en noviembre es",obtener_destino(j))
-	 Cerrar(viaje)
+		j:= mas 
+		Esc("Menor monto de: ",menor,"$"," en el mes ",m_menor," del destino ",obtener_destino(d_menor)) // consigna 2
+		Esc("El destino mas elegido en noviembre es",obtener_destino(j)) // consigna 4
+		Cerrar(viaje)
 	FinProceso
 FinAccion
 
