@@ -1,84 +1,84 @@
 Accion Ejercicio1 (A: arreglo[1...200] de entero) es 
  Ambiente 
- Fecha = registro 
-	 dia: N(2)
-	 mes: N(2)
-	 anio: N(4)
+	Fecha = registro 
+		dia: N(2)
+		mes: N(2)
+		anio: N(4)
 	FinRegistro
- TARJETA = registro 
-	 dni: N(8)
-	 n_cuenta: N(8)
-	 credito: N(10)
-	 ult_carga: Fecha
+	TARJETA = registro 
+		dni: N(8)
+		n_cuenta: N(8)
+		credito: N(10)
+		ult_carga: Fecha
 	FinRegistro
- tarje: archivo de TARJETA indexado por dni 
- reg_tar: TARJETA
- TURISTA = registro 
-	 dni: N(8)
-	 nombre: AN(100)
-	 f_nacimiento: Fecha 
-	 telefono: AN(100)
-	 valido: logico 
+	tarje: archivo de TARJETA indexado por dni 
+	reg_tar: TARJETA
+	TURISTA = registro 
+		dni: N(8)
+		nombre: AN(100)
+		f_nacimiento: Fecha 
+		telefono: AN(100)
+		valido: logico 
 	FinRegistro
- turis: archivo de TURISTA indexado por dni 
- reg_tur: TURISTA
- FACTURAS = registro
-	 nro: N(10)
-	 dni: N(8)
-	 id_servicio: N(10)
-	 monto: N(3)
-	 f_carga: Fecha 
+	turis: archivo de TURISTA indexado por dni 
+	reg_tur: TURISTA
+	FACTURAS = registro
+		nro: N(10)
+		dni: N(8)
+		id_servicio: N(10)
+		monto: N(3)
+		f_carga: Fecha 
 	FinRegistro
- factu: archivo de FACTURAS ordenado por nro y dni 
- reg_f: FACTURAS
- m_total, serv: entero 
- servicio: logico 
- Procedimiento cargar_monto() es 
-	 reg_tar.credito:= reg_tar.credito + m_total
-	 Regrabar(tarje,reg_tar)
-	 Esc("El monto total es de",m_total)
+	factu: archivo de FACTURAS ordenado por nro y dni 
+	reg_f: FACTURAS
+	m_total, serv: entero 
+	servicio: logico 
+	Procedimiento cargar_monto() es 
+		reg_tar.credito:= reg_tar.credito + m_total
+		Regrabar(tarje,reg_tar)
+		Esc("El monto total es de",m_total)
 	FinProcedimiento
- Procedimiento dar_baja() es 
-	 reg_tar.ult_carga.dia:= 01
-	 reg_tar.ult_carga.mes:= 01
-	 reg_tar.ult_carga.anio:= 1999
-	 Regrabar(tarje,reg_tar)
-	 reg_tur:= falso 
-	 Regrabar(turis,reg_tur)
+	Procedimiento dar_baja() es 
+		reg_tar.ult_carga.dia:= 01
+		reg_tar.ult_carga.mes:= 01
+		reg_tar.ult_carga.anio:= 1999
+		Regrabar(tarje,reg_tar)
+		reg_tur:= falso 
+		Regrabar(turis,reg_tur)
     FinProcedimiento
- Proceso 
-	 Abrir E/S (tarje); Abrir E/S (turis); Abrir E/(factu)
-	 Leer(factu,reg_f)
-	 m_total:=0;
-	 Mientras NFDA(factu) hacer 
-		 servicio:= falso
-		 serv:= reg_f.id_servicio 
-		 Para i:= 1 a 200 hacer  
+	Proceso 
+		Abrir E/S (tarje); Abrir E/S (turis); Abrir E/(factu)
+		Leer(factu,reg_f)
+		m_total:=0;
+		Mientras NFDA(factu) hacer 
+			servicio:= falso
+			serv:= reg_f.id_servicio 
+			Para i:= 1 a 200 hacer  
 		 	 	Si A[serv] = 1 entonces
 				 servicio:= verdadero 
 				FinSi 
 			FinPara
 			Si (reg_f.monto < 200) Y (servicio) entonces 
-			 m_total:= ((reg_f.monto) DIV dolar2019)*0.50
-			 reg_tar.dni:= reg_f.dni 
-			 Leer(tarje,reg_tar)
+				m_total:= ((reg_f.monto) DIV dolar2019)*0.50
+				reg_tar.dni:= reg_f.dni 
+				Leer(tarje,reg_tar)
 			 	Si EXISTE entonces 
-				 reg_tur.dni:= reg_f.dni 
-				 Leer(turis,reg_tur)
+					reg_tur.dni:= reg_f.dni 
+					Leer(turis,reg_tur)
 				 	Si EXISTE entonces 
 					 	Si m_total < 200000 entonces 
-						 cargar_monto()
+						 	cargar_monto()
 						Sino 
-						 dar_baja()
+						 	dar_baja()
 						FinSi 
 					FinSi
 				FinSi
 			FinSi
-		 Leer(factu,reg_f)
+		 	Leer(factu,reg_f)
 		FinMientras
-	 Cerrar(factu)
-	 Cerrar(tarje)
-	 Cerrar(turis)
+		Cerrar(factu)
+		Cerrar(tarje)
+		Cerrar(turis)
 	FinProceso
 FinAccion
 
