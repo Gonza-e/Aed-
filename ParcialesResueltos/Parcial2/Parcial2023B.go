@@ -1,70 +1,70 @@
 Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es 
  Ambiente
- Fecha = registro 
-	 dia: N(2)
-	 mes: N(2)
-	 anio: N(4)
+	Fecha = registro 
+		dia: N(2)
+		mes: N(2)
+		anio: N(4)
 	FinRegistro 
- BICICLETAS = registro 
-	 clave = registro 
-		 nro_serie: N(5)
-		 modelo: AN(5)
+	BICICLETAS = registro 
+		clave = registro 
+			nro_serie: N(5)
+			modelo: AN(5)
 		FinRegistro
-	 f_adquisicion: Fecha
-	 f_mantenimiento: Fecha
+		f_adquisicion: Fecha
+		f_mantenimiento: Fecha
 	FinRegistro
- arch, arch_act: archivo de BICICLETAS ordenado por clave 
- reg, reg_act, aux: BICICLETAS
- NOVEDADES = registro 
-	 clave = registro 
-	 	 nro_serie: N(5)
-		 modelo: AN(5)
+	arch, arch_act: archivo de BICICLETAS ordenado por clave 
+	reg, reg_act, aux: BICICLETAS
+	NOVEDADES = registro 
+		clave = registro 
+			nro_serie: N(5)
+			modelo: AN(5)
 		FinRegistro
-	 t_novedad: (1,2,3,4)
-	 f_novedad: Fecha 
-	 h_inicio: N(2)
-	 h_fin: N(2)
-	 circuito_nro: N(1)
-	 id_usuario: AN(10)
+		t_novedad: (1,2,3,4)
+		f_novedad: Fecha 
+		h_inicio: N(2)
+		h_fin: N(2)
+		circuito_nro: N(1)
+		id_usuario: AN(10)
 	FinRegistro
- arch_nov: archivo de NOVEDADES ordenado por clave 
- reg_nov: NOVEDADES
- Procedimiento leer_bici() es 
-	 Leer(arch,reg)
+	arch_nov: archivo de NOVEDADES ordenado por clave 
+	reg_nov: NOVEDADES
+	Procedimiento leer_bici() es 
+		Leer(arch,reg)
 	 	Si FDA(arch) hacer
-		 reg.clave:= HV
+		 	reg.clave:= HV
 		FinSi 
 	FinProcedimiento 
- Procedimiento leer_nov() es 
-	 Leer(arch_nov,reg_nov)
+	Procedimiento leer_nov() es 
+		Leer(arch_nov,reg_nov)
 	 	Si FDA(arch_nov) entonces 
-		 reg_nov.clave:= HV
+		 	reg_nov.clave:= HV
 		FinSi
 	FinProcedimiento
- cir_usu, paseo_usu, diferenciar, valor: entero 
- usuario: arreglo[1...2,1...6] de Proceso  
- Proceso = registro 
-	 monto: N(6)
-	 paseos: N(6)
+	cir_usu, paseo_usu, diferenciar, valor: entero 
+	usuario: arreglo[1...2,1...6] de Proceso  
+	Proceso = registro 
+		monto: N(6)
+		paseos: N(6)
 	FinRegistro
- Procedimiento procesos_iguales() es 
+ 	Procedimiento procesos_iguales() es 
 	 	Si reg_nov.t_novedad = 1 entonces 
-		 Esc("a")
+		 	Esc("a")
 		Sino 
 			Si reg_nov.t_novedad = 2 entonces 
-			 diferenciar:= diff_horas(reg_nov.h_inicio, reg_nov.h_fin)
-			 j:= reg_nov.circuito_nro
-			 Segun diferenciar hacer 
-			 	 > 6: i:= 1; valor:= 1500
-				 < 6: i:= 2; valor:= 1000
+				diferenciar:= diff_horas(reg_nov.h_inicio, reg_nov.h_fin)
+				j:= reg_nov.circuito_nro
+				Segun diferenciar hacer 
+					> 6: i:= 1; valor:= 1500
+					< 6: i:= 2; valor:= 1000
 				FinSegun 
-			 usuario[i,j].monto:= usuario[i,j] + (valor*A[i,j])
-			 usuario[i,j].paseos:= usuario[i,j].paseos + 1  
+				usuario[i,j].monto:= usuario[i,j] + (valor*A[i,j])
+				usuario[i,j].paseos:= usuario[i,j].paseos + 1  
 			Sino 
 				Si reg_nov.t_novedad = 3 entonces
-				 aux.f_mantenimiento:= fecha_actual()
+				 	aux.f_mantenimiento:= fecha_actual()
 				Sino 
-				 Esc("Baja de la unidad")
+				 	Esc("Baja de la unidad")
 				FinSi
 			FinSi
 		FinSi
@@ -77,7 +77,7 @@ Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es
 	 	leer_nov()
 	 	Para i:= 1 a 2 hacer
 	  	 	Para j:= 1 a 6 hacer
-			 usuario[i,j]:= 0 
+			 	usuario[i,j]:= 0 
 			FinPara
 		FinPara
 	 	diferenciar:=0; valor:=0; cir_usu:=0; paseo_usu:=0
@@ -85,15 +85,15 @@ Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es
 	 	Leer(cir_usu); Leer(paseo_usu)
 		Mientras (reg.clave <> HV) o (reg_nov.clave <> HV) hacer 
 	 	 	Si reg.clave < reg_nov.clave entonces 
-			 reg_act:= reg 
-			 Grabar(arch_act,reg_act)
-			 leer_bici()
+				reg_act:= reg 
+				Grabar(arch_act,reg_act)
+				leer_bici()
 			Sino 
 				Si reg.clave = reg_nov.clave entonces 
 				 	aux:= reg 
 					Mientras aux.clave = reg_nov.clave entonces 
-				 	 procesos_iguales()
-					 leer_nov()
+						procesos_iguales()
+						leer_nov()
 					FinMientras 
 				 	reg_act:= aux 
 				 	Grabar(arch_act,reg_act)
@@ -112,17 +112,17 @@ Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es
 				 	 	procesos_iguales()
 					 	leer_nov()
 					FinMientras
-				 reg_act:= aux
-				 Grabar(arch_act,reg_act)
+					reg_act:= aux
+					Grabar(arch_act,reg_act)
 				FinSi
 			FinSi
 		FinMientras
-	 i:= paseo_usu
-	 j:= cir_usu 
-	 Esc("El total de prestamos es",usuario[i,j].paseos,"y el monto es",usuario[i,j].monto)
-	 Cerrar(arch)
-	 Cerrar(arch_act)
-	 Cerrar(arch_nov)
+		i:= paseo_usu
+		j:= cir_usu 
+		Esc("El total de prestamos es",usuario[i,j].paseos,"y el monto es",usuario[i,j].monto)
+		Cerrar(arch)
+		Cerrar(arch_act)
+		Cerrar(arch_nov)
 	FinProceso 
 FinAccion
 
