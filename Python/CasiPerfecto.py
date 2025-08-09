@@ -1,4 +1,4 @@
-def numPerfecto(num1,suma,num2: int) -> bool:
+def casiPerfecto(num1,suma,num2: int) -> bool:
     if (num2 == 0):
         if (suma == num1 - 1): 
             return True 
@@ -14,7 +14,7 @@ def numPerfecto(num1,suma,num2: int) -> bool:
 print("Ingrese un numero")
 numero = int(input())
 
-if numPerfecto(numero, 0,numero - 1): 
+if casiPerfecto(numero, 0,numero - 1): 
     print("El numero es casi perfecto")
 else: 
     print("El numero no es casi perfecto")
