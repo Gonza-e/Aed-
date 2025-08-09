@@ -6,9 +6,9 @@ def casiPerfecto(num1,suma,num2: int) -> bool:
             return False 
     else: 
         if ((num1 % num2) == 0): 
-            return numPerfecto(num1, suma + num2, num2 - 1)
+            return casiPerfecto(num1, suma + num2, num2 - 1)
         else: 
-            return numPerfecto(num1, suma, num2 - 1)
+            return casiPerfecto(num1, suma, num2 - 1)
         
 
 print("Ingrese un numero")
