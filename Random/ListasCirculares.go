@@ -45,7 +45,7 @@ Accion ListasCirculares (prim: puntero a nodo) es //en caso de que el ejercicio 
 					p:= *p.prox 
 				FM 
 				Si (*p.dato <> valor) entonces 
-				Esc("No se encontro el elemento")
+				    Esc("No se encontro el elemento")
 				Sino 
 					Si (p = prim) entonces    //esto es lo mismo que en el caso de insercion
 						prim:= *prim.prox 
