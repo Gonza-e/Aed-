@@ -53,7 +53,7 @@ Accion ListasCirculares (prim: puntero a nodo) es //en caso de que el ejercicio 
 					Sino 
 						Si (*p.prox = prim) entonces  //este seria el caso de eliminar el ultimo elemento 
 							*ant.prox:= *p.prox  //al proximo de "ant" tenemos que hacer que apunte al proximo nodo al que este apuntando "p"
-							//disponemos P y luego hacemos que apunte a prim nuevamente ----> Disponer(p); p:= prim 
+							//disponemos P y luego hacemos que apunte a al proximo de "ant" ----> Disponer(p); p:= *ant.prox
 						Sino 
 							Si (*p.prox = p) entonces  //este seria el caso cuando hay solo un elemento, lo que quiere decir (*p.prox = p) es que el proximo de "p" está apuntando a donde está apuntando "p", es decir, a si mismo
 								prim:= nil 
