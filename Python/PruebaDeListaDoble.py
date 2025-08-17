@@ -41,7 +41,7 @@ class ListaDoble:
 
 # --- Programa Principal ---
 lista = ListaDoble()
-print("Presione 0 para terminar")
+print("Presione ENTER entre cada letra que coloque, presione 0 y luego ENTER para terminar")
 letra = ' '
 
 while letra != "0":
