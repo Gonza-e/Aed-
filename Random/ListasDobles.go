@@ -1,4 +1,4 @@
-Accion listas_dobles es 
+Accion ListasDobles es 
  Ambiente 
 	nodo = registro 
 		dato: entero 
@@ -87,7 +87,7 @@ Accion listas_dobles es
 				*q.prox:= prim 
 				*q.ant:= nil 
 				si *q.prox <> nil entonces //en caso de que el puntero prox apunte a otro nodo hacemos que el puntero "ant" de dicho nodo apunte a "q"
-					*(*(q.prox)).ant:= q 
+					*(*q.prox).ant:= q 
 				fsi 
 				prim:= q 
 			fsi 

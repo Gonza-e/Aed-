@@ -1,4 +1,4 @@
-Accion circulares (prim: puntero a nodo) es 
+Accion ListasCirculares (prim: puntero a nodo) es //en caso de que el ejercicio te de la lista la pones aca como parametro
  Ambiente 
 	nodo = registro 
 		dato: entero 
