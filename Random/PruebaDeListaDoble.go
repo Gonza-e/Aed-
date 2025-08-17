@@ -1,4 +1,4 @@
-Accion ListaDoble es 
+Accion ListaDoble es //la funcion recursiva que se ve aca esta en la carpeta "Python" para comprobar que funciona
  Ambiente 
 	nodo = registro 
 		letra: AN(1)

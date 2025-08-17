@@ -10,7 +10,7 @@ Accion ListasDobles es
 	//aclaracion: vamos a tener un nuevo puntero externo el cual va a ser "ult", el cual marca el ultimo elemento de la lista
 	prim,p,q,ult: puntero a nodo 
 	Proceso 
-		Procedimiento cargar_nodo() es 
+		Procedimiento cargarOrdenada() es //esta es una forma de cargar los nodos de forma ascendente (*q.dato > *p.dato) o descendente (*q.dato < *p.dato)
 			Nuevo(q)
 		 	*q.dato:= valor 
 		 	Si (prim = nil) entonces
@@ -20,7 +20,7 @@ Accion ListasDobles es
 				ult:= q 
 			Sino 
 				p:= prim 
-				Mientras (p<>nil) y (*p.dato > *q.dato) hacer  
+				Mientras (p<>nil) y (*q.dato > *p.dato) hacer  
 					p:= *p.prox 
 				FM 
 				Si (prim = p) entonces  //aca insertamos "q" antes del primer elemento el cual es "p"
@@ -77,7 +77,7 @@ Accion ListasDobles es
 			FinSi
 		FProcedimiento
 
-		Procedimiento cargaApilada() es //este es un invento o intento de carga apilada para listas dobles
+		Procedimiento cargaNoOrdenada() es //esta es una forma de cargar los nodos sin necesidad de un orden especifico
 			si prim = nil entonces //en caso de estar la lista vacia colocamos el primer nodo
 				prim:= q 
 				ult:= q 
