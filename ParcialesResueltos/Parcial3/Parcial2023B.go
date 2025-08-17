@@ -30,9 +30,9 @@ Accion ejercicio1 (prim,ult: puntero a nodo) es
 			*(*p.ant).prox:= *p.prox 
 			*(*p.prox).ant:= *p.ant
 		FinSi
-	 e:= p 
-	 p:= *p.ant
-	 disponer(e)
+		e:= p 
+		p:= *p.ant
+		disponer(e)
 	FP
 
  	Procedimiento cargar() es 

@@ -79,14 +79,14 @@ Accion Parcial2024A (prim: puntero a nodo, prim_circ: punteroa circ) es
 	f_comp: Fecha
 	bandera1, bandera2: boolean
 
- Proceso 
-	 Abrir E/(arch)
-	 p:= prim 
-	 n:= *p.prox 
-	 c:= prim_circ
-	 prim_doble:= nil
-	 num_op:= *p.calificacion; cant_op:= 1;
-	 f_comp:= *p.f_opinion
+	Proceso 
+		Abrir E/(arch)
+		p:= prim 
+		n:= *p.prox 
+		c:= prim_circ
+		prim_doble:= nil
+		num_op:= *p.calificacion; cant_op:= 1;
+		f_comp:= *p.f_opinion
 		Mientras (p<>nil) hacer
 			Si *p.id_usuario = *n.id_usuario entonces  
 				Si *p.f_opinion < *n.f_opinion entonces 
