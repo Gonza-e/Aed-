@@ -44,12 +44,11 @@ Accion ListaDoble es //la funcion recursiva que se ve aca esta en la carpeta "Py
 			insertar()	
 		hasta que (Letra = "0")
 
-		s:= prim; u:= ult
-		si capicua(verdadero,s,u) entonces 
+		p:= prim; u:= ult
+		si capicua(p,u) entonces 
 			Esc("La palabra es capicua")
 		sino 
 			Esc("La palabra no es capicua")
 		fsi 
 	FProceso 
 FAccion 
-		
