@@ -1,16 +1,24 @@
 def esPrimo(num1,num2:int) -> bool:
-    if num2 == 0: 
-        return True
+    if num1 == 1:
+        return False
     else:
-        if ((num1 % num2) == 0) & (num2 != 1):
-            return False
+        if num2 == 0: 
+            return True
         else:
-            return esPrimo(num1,num2-1)
+            if ((num1 % num2) == 0) and (num2 != 1):
+                return False
+            else:
+                return esPrimo(num1,num2-1)
 
-
+'''
 num = int(input("Ingrese un numero: "))
 
 if esPrimo(num,num-1):
     print("El numero es primo")
 else: 
     print("El numero no es primo")
+'''
+
+for i in range(10):
+    if esPrimo(i,i-1): 
+        print("El numero es primo")
