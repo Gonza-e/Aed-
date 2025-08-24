@@ -20,4 +20,4 @@ if verificar(tarjeta,15,0):
 else: 
     print("La tarjeta no es valida")
     
-#Ejercicio de recursividad sacado del 3er parcial de 2024
+#Ejercicio de recursividad sacado del 3er parcial de 2024 (Parcial3/Parcial2024B.go)
