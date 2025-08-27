@@ -86,82 +86,89 @@ FinAccion
 
 Accion Ejercicio2 es 
  Ambiente 
- ALBUM = registro 
-	 cod_usuario: N(5)
-	 cod_figurita: N(5)
-	 cantidad: N(2)
-	 tipo: AN(1)
+	ALBUM = registro 
+		cod_usuario: N(5)
+		cod_figurita: N(5)
+		cantidad: N(2)
+		tipo: AN(1)
 	FinRegistro
- alb: archivo de ALBUM ordenado por cod_usuario
- reg_alb: ALBUM
- AMIGOS = registro 
-	 cod_usuario: N(5)
-	 apellido: AN(15)
-	 nombre: AN(15)
-	 celular: N(10)
+	alb: archivo de ALBUM ordenado por cod_usuario
+	reg_alb: ALBUM
+
+	AMIGOS = registro 
+		cod_usuario: N(5)
+		apellido: AN(15)
+		nombre: AN(15)
+		celular: N(10)
 	FinRegistro
- ami: archivo de AMIGOS indexado por cod_usuario
- reg_ami: AMIGOS
- A: arreglo[1...4,1...11] de ALBUM
- porc, t_usuario, i, j, mayor, res_cod: entero   
- ape, nom: AN
- Procedimiento obtener_album() es 
-	 Segun i hacer 
-	 	 1: "Dorado"
-		 2: "Comun"
-		 3: "Virtual"
+	ami: archivo de AMIGOS indexado por cod_usuario
+	reg_ami: AMIGOS
+
+	A: arreglo[1...4,1...11] de ALBUM
+	porc, t_usuario, i, j, mayor, res_cod: entero   
+	ape, nom: AN
+
+	Procedimiento obtener_album() es 
+		Segun i hacer 
+			1: "Dorado"
+			2: "Comun"
+			3: "Virtual"
 		FinSegun
 	FinProcedimiento
- Proceso 
-	 Abrir E/(alb)
-	 Abrir E/(ami)
-	 Leer(alb,reg_alb)
-	 porc:=0, t_usuario:=0; mayor:=0
-	 i:=0; j:=1
-	 res_cod:= reg_alb.cod_usuario
-	 Para i:= 1 a 4 hacer 
-	 	 Para j:= 1 a 10 hacer 
-		 	 A[i]:=0
+	
+	Proceso 
+		Abrir E/(alb)
+		Abrir E/(ami)
+		Leer(alb,reg_alb)
+		porc:=0, t_usuario:=0; mayor:=0
+		i:=0; j:=1
+		res_cod:= reg_alb.cod_usuario
+		Para i:= 1 a 4 hacer 
+			Para j:= 1 a 10 hacer 
+				A[i]:=0
 			FinPara 
 		FinPara  
 	 Mientras NFDA(alb) hacer 
 	 	 	Si res_cod <> reg_alb.cod_usuario entonces
 			 	Si t_usuario > mayor entonces 
-				 mayor:= t_usuario 
-				 reg_ami.cod_usuario:= res_cod
-				 Leer(ami,reg_ami)
+					mayor:= t_usuario 
+					reg_ami.cod_usuario:= res_cod
+					Leer(ami,reg_ami)
 				 	Si EXISTE entonces 
-					 ape:= reg_ami.apellido
-					 nom:= reg_ami.nombre 
+						ape:= reg_ami.apellido
+						nom:= reg_ami.nombre 
 					FinSi
 				FinSi
-			 j:= j+1
-			 t_usuario:=0 
-			 res_cod:= reg_alb.cod_usuario  
+				j:= j+1
+				t_usuario:=0 
+				res_cod:= reg_alb.cod_usuario  
 			FinSi
-		 Segun reg_alb.tipo hacer 
-		 	 "D": i:=1
-			 "C": i:=2
-			 "V": i:=3
+
+			Segun reg_alb.tipo hacer 
+				"D": i:=1
+				"C": i:=2
+				"V": i:=3
 			FinSegun 
-		 A[i,j]:= A[i,j] + reg_alb.cantidad
-		 A[4,j]:= A[4,j] + reg_alb.cantidad
-		 A[i,11]:= A[i,11] + reg_alb.cantidad
-		 A[4,11]:= A[4,11] + reg_alb.cantidad
-		 t_usuario:= t_usuario + reg_alb.cantidad
-		 Leer(alb,reg_alb)
+
+			A[i,j]:= A[i,j] + reg_alb.cantidad
+			A[4,j]:= A[4,j] + reg_alb.cantidad
+			A[i,11]:= A[i,11] + reg_alb.cantidad
+			A[4,11]:= A[4,11] + reg_alb.cantidad
+			t_usuario:= t_usuario + reg_alb.cantidad
+			Leer(alb,reg_alb)
 		FinMientras
-	 Para i:= 1 a 4 hacer 
-	 	 Para j:= 1 a 11 hacer 
-		     Esc("El usuario",j,"cuenta con",A[4,j],"figuritas")
-			 Esc("El album",obtener_album(),"cuenta con",A[i,11])
-			 porc:= (A[4,j]/A[4,11])*100
-			 Esc("El porcentaje de figuritas del usuario",j,"es de",porc,"%")
+
+		Para i:= 1 a 4 hacer 
+			Para j:= 1 a 11 hacer 
+				Esc("El usuario",j,"cuenta con",A[4,j],"figuritas")
+				Esc("El album",obtener_album(),"cuenta con",A[i,11])
+				porc:= (A[4,j]/A[4,11])*100
+				Esc("El porcentaje de figuritas del usuario",j,"es de",porc,"%")
 			FinPara
   	    FinPara
-	 Esc("El usuario con mayor cantidad de figuritas es", ape, nom)
-	 Cerrar(ami)
-	 Cerrar(alb)	 
+		Esc("El usuario con mayor cantidad de figuritas es", ape, nom)
+		Cerrar(ami)
+		Cerrar(alb)	 
 	FinProceso 
 FinAccion
 		

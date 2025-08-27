@@ -15,6 +15,7 @@ Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es
 	FinRegistro
 	arch, arch_act: archivo de BICICLETAS ordenado por clave 
 	reg, reg_act, aux: BICICLETAS
+
 	NOVEDADES = registro 
 		clave = registro 
 			nro_serie: N(5)
@@ -29,24 +30,29 @@ Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es
 	FinRegistro
 	arch_nov: archivo de NOVEDADES ordenado por clave 
 	reg_nov: NOVEDADES
+
 	Procedimiento leer_bici() es 
 		Leer(arch,reg)
 	 	Si FDA(arch) hacer
 		 	reg.clave:= HV
 		FinSi 
 	FinProcedimiento 
+
 	Procedimiento leer_nov() es 
 		Leer(arch_nov,reg_nov)
 	 	Si FDA(arch_nov) entonces 
 		 	reg_nov.clave:= HV
 		FinSi
 	FinProcedimiento
+
 	cir_usu, paseo_usu, diferenciar, valor: entero 
 	usuario: arreglo[1...2,1...6] de Proceso  
+
 	Proceso = registro 
 		monto: N(6)
 		paseos: N(6)
 	FinRegistro
+
  	Procedimiento procesos_iguales() es 
 	 	Si reg_nov.t_novedad = 1 entonces 
 		 	Esc("a")
@@ -69,6 +75,7 @@ Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es
 			FinSi
 		FinSi
 	FinProcedimiento
+
  	Proceso 
 	 	Abrir E/(arch)
 		Abrir E/(arch_nov)
@@ -128,8 +135,8 @@ FinAccion
 
 Accion Ejercicio2 es 
  Ambiente
- NOVEDADES = registro 
- 	 clave = registro 
+	NOVEDADES = registro 
+ 	 	clave = registro 
 		  	nro_serie: N(5)
 		 	modelo: AN(5)
 		FinRegistro
@@ -156,11 +163,11 @@ Accion Ejercicio2 es
 	FinRegistro
 
  	Funcion obtener_rango(x: entero): AN 
-	 Segun x hacer 
-		 1: Esc("menor 18")
-		 2:	Esc("entre 18 y 35")
-		 3: Esc("entre 35 y 75")
-		 4: Esc("mayor a 75")		
+		Segun x hacer 
+			1: Esc("menor 18")
+			2:	Esc("entre 18 y 35")
+			3: Esc("entre 35 y 75")
+			4: Esc("mayor a 75")		
 		FinSegun
 	FinFuncion
 
