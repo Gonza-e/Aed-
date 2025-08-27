@@ -11,11 +11,7 @@ def numPrometido(num1,num2,num3,suma: int) -> bool:
             return numPrometido(num1,num2,num3-1,suma)
         
 
-numero1 = int(input("Ingrese un valor: "))
-numero2 = int(input("Ingrese otro valor: "))
-
-
-if numPrometido(numero1, numero2, numero1 - 1, 0) and numPrometido(numero2, numero1, numero2 - 1, 0):
-    print("Los números son prometidos")
-else:
-    print("Los números no son prometidos")
+for i in range(47,76):
+    for j in range(i+1,77):
+        if numPrometido(i,j,i-1,0) and numPrometido(j,i,j-1,0):
+            print("El par de numeros es prometido: ", "(",i,",",j,")")
