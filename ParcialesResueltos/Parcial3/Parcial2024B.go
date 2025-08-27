@@ -152,78 +152,78 @@ FAccion
 Accion Ejercicio2 (prim: puntero a nodo, ult: puntero a nodo) es 
  Ambiente
 	Fecha = registro 
-	 dia: N(2)
-	 mes: N(2)
-	 anio: N(4)
+		dia: N(2)
+		mes: N(2)
+		anio: N(4)
 	FReg
 
  	nodo = registro
-	 id_compra: N(10)
-	 f_compra: Fecha 
-	 metodo_pago: AN(3)
-	 nro_tarjeta: arreglo[1...20] de enteros 
-	 monto: N(7)
+		id_compra: N(10)
+		f_compra: Fecha 
+		metodo_pago: AN(3)
+		nro_tarjeta: arreglo[1...20] de enteros 
+		monto: N(7)
 	FReg
 	p,s: puntero a nodo 
 
 	Procedimiento eliminar() es 
 	 	Si prim = nil entonces 
-		 Esc('La lista está vacia')
+		 	Esc('La lista está vacia')
 		Sino 
 		 	Si prim = p entonces 
-			 prim:= *p.prox 
-			 *prim.ant:= nil 
+				prim:= *p.prox 
+				*prim.ant:= nil 
 			Sino 
 				Si p = ult entonces 
-				 ult:= *ult.ant 
-				 *ult.prox:= *p.prox 
+					ult:= *ult.ant 
+					*ult.prox:= *p.prox 
 				Sino 
 				 	Si prim = ult entonces 
-					 prim:= nil 
-					 ult:= nil 
+						prim:= nil 
+						ult:= nil 
 					Sino 
-					 *(*p.prox).ant:= *p.ant 
-					 *(*p.ant).prox:= *p.prox 
+						*(*p.prox).ant:= *p.ant 
+						*(*p.ant).prox:= *p.prox 
 					FinSi 
 				FinSi 
 			FinSi 
 		FinSi 
-	 s:= p 
-	 p:= *p.prox 
-	 Disponer(s)
+		s:= p 
+		p:= *p.prox 
+		Disponer(s)
 	FP 
 
 	Funcion verificar(A:arreglo[1...20] de enteros,suma:entero,i:entero): booleano 
 	 	Si i = 0 entonces
 			Si (suma MOD 5) = 0 entonces 
-			 verificar:= verdadero
+			 	verificar:= verdadero
 			Sino 
-			 verificar:= falso 
+			 	verificar:= falso 
 			Fsi 
 		Sino 
 			Si (i MOD 2 <> 0) entonces 
-			 A[i]:= A[i] * 2
+			 	A[i]:= A[i] * 2
 				Si A[i] > 9 entonces 
-				 A[i]:= (A[i] MOD 10) + (A[i] DIV 10) 
+				 	A[i]:= (A[i] MOD 10) + (A[i] DIV 10) 
 				Fsi 
-			 verificar:= verificar(suma + A[i], i-1)
+			 	verificar:= verificar(suma + A[i], i-1)
 			Sino 
-			 verificar:= verificar(suma, i-1)
+			 	verificar:= verificar(suma, i-1)
 			Fsi 
 		Fsi 
 	FFuncion
 
- Proceso 
-	 p:= prim 
+	Proceso 
+		p:= prim 
 	 	Mientras (p <> nil) hacer 
-		 	Si (*p.metodo_pago = 'TC') entonces
+		 	Si (*p.metodo_pago = "TC") entonces
 				Si (verificar(*p.nro_tarjeta,0,20)) entonces
-				 Esc("Cumple")
+				 	Esc("Cumple")
 				Sino 
-				 eliminar()
+				 	eliminar()
 				Fsi 
 			Fsi 
-		 p:= *p.prox 
+		 	p:= *p.prox 
 		FM 
 	FProceso 
 FAccion
