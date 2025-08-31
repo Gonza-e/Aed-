@@ -168,7 +168,7 @@ Accion Ejercicio2 (prim: puntero a nodo, ult: puntero a nodo) es
 
 	Procedimiento eliminar() es 
 	 	Si prim = nil entonces 
-		 	Esc('La lista está vacia')
+		 	Esc("La lista está vacia")
 		Sino 
 		 	Si prim = p entonces 
 				prim:= *p.prox 
