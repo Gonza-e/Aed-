@@ -5,18 +5,22 @@ Accion ejercicio2 es
 
 	nodo = registro 
 		letra: AN(1)
-		prox: puntero a nodo 
+		ant, prox: puntero a nodo 
 	Freg 
 	prim,p,q,s: puntero a nodo 
 
-	Procedimiento cargaEncolada() 
-		p:= prim 
-		Mientras *p.prox <> prim hacer 
-			p:= *p.prox 
-		FM 
+	nodo2 = registro
+		og, des: AN(1)
+		prox: puntero a nodo2 
+	Freg
+	prim2,p2,q2,ant2: puntero a nodo2 
 
-		*q.prox:= *p.prox 
-		*p.prox:= q 
+	Procedimiento cargaCircularDoble() 
+		*q.prox:= *ult.prox 
+		*(*ult.prox).ant:= q 
+		*q.ant:= ult 
+		*ult.prox:= q 
+		ult:= q 
 	FProcedimiento 
 
 	Funcion num(n:entero): AN 
@@ -51,19 +55,60 @@ Accion ejercicio2 es
 	Procedimiento cargarLetras()
 		para i:= 1 hasta 26 hacer 
 			Nuevo(q); *q.letra:= num(i)
-			cargaEncolada()
+			si prim = nil entonces 
+				*q.ant:= q 
+				*q.prox:= q 
+				prim:= q 
+				ult:= q 
+			sino 
+				cargaCircularDoble()
+			fsi 		
 		fpara 
+	FProcedimiento
+
+	Procedimiento cargaEncolada()
+		p2:= prim2
+		Mientras p2 <> nil hacer 
+			ant2:= p2 
+			p2:= *p2.prox 
+		FM 
+
+		*q2.prox:= *ant2.prox 
+		*ant2.prox:= q2 
 	FProcedimiento
 
 	Procedimiento desencriptar()
 		p:= prim 
-		Mientras (*p.prox <> prim) y (*p.letra <> v) hacer
-			k:= k - 1 
+		Mientras (*p.letra <> v) hacer
 			p:= *p.prox 
 		FM 
 
 		si *p.letra = v entonces 
 			s:= p 
+			para i:= 1 hasta k hacer 
+				s:= *s.ant 
+			fpara 
+
+			Nuevo(q2); *q2.og:= *p.letra; *q2.des:= *s.letra 
+			cargarEncolada()
+		fsi 
+	FProcedimiento
+
+	Proceso 
+		ARR(sec); AVZ(sec,v)
+		prim:= nil; prim2:= nil 
+		cargarLetras()
+
+		Mientras NFDS(sec) hacer 
+			desencriptar()
+			AVZ(sec,v)
+		FM 
+		Cerrar(sec)
+	FProceso 
+FAccion
+
+
+
 			
 
 		
