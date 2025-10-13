@@ -7,7 +7,7 @@ Accion ListaDoble es //la funcion recursiva que se ve aca esta en la carpeta "Py
 	prim,p,q,ult,u,s: puntero a nodo 
 
 	Funcion capicua(proximo,anterior: puntero a nodo): booleano 
-		si (proximo = anterior) entonces 
+		si (proximo = anterior) o (proximo.ant = anterior) entonces //(proximo.ant = anterior) es para el caso de que la palabra tenga cantidad par de digitos
 			capicua:= verdadero 
 		sino 
 			si *proximo.letra = *anterior.letra entonces 

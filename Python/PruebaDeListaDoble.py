@@ -10,12 +10,12 @@ class ListaDoble:
         self.ult = None
 
     # Función recursiva para verificar capicúa 
-    def capicua(self, proximo, anterior, bandera=True):
-        if proximo == anterior and bandera:  # caso base
+    def capicua(self, proximo, anterior):
+        if proximo == anterior or (proximo.ant == anterior):  # caso base
             return True
         else:
-            if proximo and anterior and proximo.letra == anterior.letra:
-                return self.capicua(proximo.prox, anterior.ant, True)
+            if proximo.letra == anterior.letra:
+                return self.capicua(proximo.prox, anterior.ant)
             else:
                 return False
 
