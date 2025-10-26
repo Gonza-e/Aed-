@@ -10,7 +10,7 @@ def busquedaBinaria(arr,izq,der,medio,num) -> int:
             else:
                 return busquedaBinaria(arr,izq,medio,(izq+der)//2,num)
         
-numeros = [30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]
-medio = (numeros[0] + numeros[29]) // 2
+numeros = [2,5,6,14,45,67,70]
+medio = (0 + 6) // 2
 
-print(busquedaBinaria(numeros,numeros[0],numeros[29],medio,2))
+print(busquedaBinaria(numeros,0,6,medio,67))

@@ -12,7 +12,7 @@ def esPrimo(num1,num2:int) -> bool:
 
 num = int(input("Ingrese un numero: "))
 
-if esPrimo(num,num-1):
+if esPrimo(num,num//2):
     print("El numero es primo")
 else: 
     print("El numero no es primo")
