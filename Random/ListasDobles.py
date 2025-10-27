@@ -76,7 +76,7 @@ lista = ListaDoble()
 while numero >= 0:
     numero = int(input("Ingrese un numero mayor a cero \n"))
     if numero > 0:
-     lista.cargaOrdenada(numero)
+        lista.cargaOrdenada(numero)
 
 lista.mostrarNodo()
 
