@@ -13,4 +13,6 @@ def busquedaBinaria(arr,izq,der,medio,num) -> int:
 numeros = [2,5,6,14,45,67,70]
 medio = (0 + 6) // 2
 
-print(busquedaBinaria(numeros,0,6,medio,67))
+valor = int(input("Ingrese un valor para encontrar \n"))
+
+print("Valor encontrado:",busquedaBinaria(numeros,0,6,medio,valor))
