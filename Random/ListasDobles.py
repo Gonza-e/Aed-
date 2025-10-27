@@ -67,8 +67,10 @@ class ListaDoble:
     def mostrarNodo(self):
         p = self.prim
         while p is not None:        #Equivalente a poner Mientras p <> nil 
-            print(f"Numero {p.num}","<->")
+            print(f"{p.num}",end = " <-> ")
             p = p.prox
+        print("nil \n")
+    
             
 
 numero = 0
