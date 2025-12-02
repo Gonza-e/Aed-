@@ -19,7 +19,7 @@ class ListaDoble:
             nuevo.prox = None
         else:
             p = self.prim
-            while (p is not None) and (nuevo.num < p.num):
+            while (p is not None) and (nuevo.num > p.num):
                 p = p.prox 
             
             if self.prim == p:

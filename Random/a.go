@@ -186,5 +186,144 @@ Accion ejercicio es
 		FFuncion
 FAccion 
 
+Ambiente 
+	Procedimiento maxMin()
+		si q.dato> max entonces
+			max:= *q.dato
+		sino
+			si q.dato<min entonces
+				min:= *q.dato
+			finsi
+		finsi
+	fp
+		
+	Procedimiento cargaOrdenada()
+		si prim2=nil entonces
+			*q2.prox:=nil
+			*q2.ant:=nil
+			prim2:=q2
+			ult:=q2
+		sino
+			p:=prim2
+			mientras p2<>nil y q2.dato<p2.dato hacer
+				p2:=*p2.prox
+			fmientras 
+
+			si p2=prim2 entonces
+				prim2:=q2
+				prim2.prox:=p2
+				prim2.ant:=nil
+				*p2.ant:= q2
+			sino
+				si p2=ult entonces
+					ult.prox:=q2
+					q2.ant:=ult
+					ult:=q2
+					ult.prox:=nil
+				sino
+					*(*p2.ant).prox:=q2
+					q2.ant:=*p2.ant
+					q2.prox:=p2
+					p2.ant:=q2
+				Fsi
+			fsi
+		fsi
+	fp
 
 
+	Procedimiento proceso()
+		para i:=1 hasta 6 hacer
+			num:= *p.dato
+			cont:= *p.dato
+			para i:=1 hasta num hacer 
+				sum:=sum+*p.dato
+				p:= *p.prox 
+			fpara 
+			nuevo(q)
+			q.dato:=sum/cont
+			maxMin()
+			cargaOrdenada()
+			p:=p.prox
+		fpara
+	fp 
+
+	Proceso 
+		p:= prim // Lista circular 
+		proceso() 
+		Esc("Promedio maximo: ",max)
+		Esc("Promedio minimo: ",min)
+	fproceso 
+fambiente 
+
+// V e n e z u e l a 
+Procedimiento darVuelta(p: puntero a nodo)
+	si p <> nil entonces 
+		darVuelta(*p.prox) 
+		Esc(*p.dato) 
+	fsi 
+fp
+		
+Procedimiento numeroAlreves(n: entero)
+	si n <> 0 entonces 
+		Esc(n mod 10)
+		numeroAlreves(n div 10)
+	fsi 
+fp 
+
+
+Funcion pares(n: entero): booleano
+	si n = 0 entonces 
+		pares:= verdadero
+	sino 
+		si (n mod 10) mod 2 <> 0 entonces 
+			pares:= falso 
+		sino 
+			pares(n div 10)
+		fsi 
+	fsi 
+FFuncion
+
+Funcion esPalindromo(prim,ult: puntero a nodo): booleano
+	si prim = ult o *prim.ant = ult entonces 
+		esPalindromo:= verdadero 
+	sino 
+		si *prim.dato = *ult.dato entonces 
+			esPalindromo:= esPalindromo(*prim.prox,*ult.ant)
+		sino 
+			esPalindromo:= falso 
+		fsi 
+	fsi 
+FFuncion
+
+Funcion verificar(A:arreglo[1...5] de enteros, ind: entero): entero 
+	si ind = 6 entonces
+		verificar:= 0 
+	sino 
+		si A[ind] >= 6 entonces 
+			verificar:= 1 + verificar(A,ind + 1)
+		sino 
+			verificar:= verificar(A,ind + 1)
+		fsi 
+	fsi
+FFuncion
+
+Funcion verificar(A:arreglo[1...5] de enteros; ind,cont: entero): booleano
+	si ind = 6 entonces
+		si cont >= 3 entonces 
+			verificar:= verdadero
+		sino 
+			verificar:= falso
+		fsi
+	sino 
+		si A[ind] >= 6 entonces 
+			verificar:= verificar(A,ind + 1,cont + 1)
+		sino 
+			verificar:= verificar(A,ind + 1,cont)
+		fsi 
+	fsi
+FFuncion
+
+
+
+
+si verificar(Arreglo,1) >= 3 entonces 
