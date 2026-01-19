@@ -34,25 +34,22 @@ class ListaDoble:
     # Método para mostrar lista (opcional, ayuda en prueba) 
     def mostrar(self):
         p = self.prim
-        while p:
+        while p is not None:
             print(p.letra, end=" <-> ")
             p = p.prox
         print("Nil")
 
 # --- Programa Principal ---
 lista = ListaDoble()
-print("Presione ENTER entre cada letra que coloque, presione 0 y luego ENTER para terminar")
-letra = ' '
+palabra = input("Ingrese una palabra \n")
 
-while letra != "0":
-    letra = input("Ingrese una letra: ")
-    if letra != "0":
-        lista.insertar(letra)
+for letra in palabra:
+    lista.insertar(letra)
 
-
-print("\nLista cargada:")
 lista.mostrar()
 
 # Verificar si es capicúa
-es_capicua = lista.capicua(lista.prim, lista.ult)
-print("\n¿La lista es capicúa?:", "Sí" if es_capicua else "No")
+if lista.capicua(lista.prim,lista.ult):
+    print("La palabra es capicua")
+else:
+    print("La palabra no es capicua")
