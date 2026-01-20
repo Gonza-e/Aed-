@@ -48,11 +48,11 @@ Accion mundial (prim: puntero a nodo) es
 		Sino 
 			Si reg_ix.cant_goles_local = reg_ix.cant_goles_visit entonces 
 				*e_local.puntos:= *e_local.puntos + 1 
-				*e_visitante:= *e_visitante + 1 
+				*e_visitante.puntos:= *e_visitante.puntos + 1 
 			Sino 
 				*e_local.dif_gol:= *e_local.dif_gol + (reg_ix.cant_goles_local - reg_ix.cant_goles_visit)
 				*e_visitante.dif_gol:= *e_visitante.dif_gol + (reg_ix.cant_goles_local - reg_ix.cant_goles_visit)
-				*e_local.puntos:= *e_local.puntos + 1 
+				*e_local.puntos:= *e_local.puntos + 3
 			FSi 
 		FSi
 	FProcedimiento
