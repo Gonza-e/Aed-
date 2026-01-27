@@ -6,21 +6,20 @@ class Nodo:
 class Lista: 
     def __init__(self):
         self.prim = None 
+        self.ult = None 
     
     def cargaEncolada(self,letra):
         q = Nodo(letra)
         p = self.prim
-        ant = None
-        while p is not None:
-            ant = p
-            p = p.prox
 
         if self.prim is None:
             q.prox = self.prim
             self.prim = q 
+            self.ult = q 
         else:
-            ant.prox = q 
-            q.prox = p 
+            q.prox = self.ult.prox 
+            self.ult.prox = q 
+            self.ult = q 
     
     def mostrarLista(self):
         p = self.prim

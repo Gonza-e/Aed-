@@ -10,6 +10,14 @@ class SimuladorLista:
         self.root.title("Lista Simple Enlazada Interactiva")
         self.canvas = tk.Canvas(root, width=1000, height=600, bg="white")
         self.canvas.pack()
+        
+        # Variables para mover la vista del canvas (pan)
+        self.pan_start_x = 0
+        self.pan_start_y = 0
+
+        self.canvas.bind("<Alt-ButtonPress-1>", self.start_pan)
+        self.canvas.bind("<Alt-B1-Motion>", self.do_pan)
+        self.canvas.config(scrollregion=(0, 0, 5000, 3000))
 
         # Atajo con F8 para volver al menú
         self.root.bind("<F8>", self.volver_menu)
@@ -41,8 +49,6 @@ class SimuladorLista:
         btn_add_ptr = tk.Button(frame, text="Agregar puntero", command=self.agregar_puntero)
         btn_add_ptr.pack(side=tk.LEFT)
 
-
-
     def agregar_nodo(self):
         valor = self.entry_valor.get()
         if not valor:
@@ -66,18 +72,25 @@ class SimuladorLista:
         self.objetos.append(ptr)
 
     def click_izquierdo(self, event):
+        canvas_x = self.canvas.canvasx(event.x)
+        canvas_y = self.canvas.canvasy(event.y)
+
         for obj in self.objetos:
-            if obj.contiene(event.x, event.y):
+            if obj.contiene(canvas_x, canvas_y):
                 self.nodo_drag = obj
-                self.last_x, self.last_y = event.x, event.y
+                self.last_x, self.last_y = canvas_x, canvas_y
                 return
 
     def arrastrar(self, event):
         if self.nodo_drag:
-            dx = event.x - self.last_x
-            dy = event.y - self.last_y
+            canvas_x = self.canvas.canvasx(event.x)
+            canvas_y = self.canvas.canvasy(event.y)
+
+            dx = canvas_x - self.last_x
+            dy = canvas_y - self.last_y
+
             self.nodo_drag.mover(dx, dy, self.objetos)
-            self.last_x, self.last_y = event.x, event.y
+            self.last_x, self.last_y = canvas_x, canvas_y
 
     def soltar(self, event):
         self.nodo_drag = None
@@ -142,4 +155,18 @@ class SimuladorLista:
         root = tk.Tk()
         app = SimuladorListas.MenuPrincipal(root)
         root.mainloop()
+
+    def start_pan(self, event):
+        self.pan_start_x = event.x
+        self.pan_start_y = event.y
+
+    def do_pan(self, event):
+        dx = event.x - self.pan_start_x
+        dy = event.y - self.pan_start_y
+
+        self.canvas.xview_scroll(int(-dx/2), "units")
+        self.canvas.yview_scroll(int(-dy/2), "units")
+
+        self.pan_start_x = event.x
+        self.pan_start_y = event.y
 

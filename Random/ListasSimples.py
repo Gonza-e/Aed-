@@ -6,6 +6,7 @@ class Nodo:
 class ListaSimple:
     def __init__(self):
         self.prim = None
+        self.ult = None 
     
     def cargaOrdenada(self,numero):
         nuevo = Nodo(numero)
@@ -50,6 +51,17 @@ class ListaSimple:
             nuevo.prox = ant.prox 
             ant.prox = nuevo 
 
+    def cargaEncolada2(self,numero):
+        nuevo = Nodo(numero)
+        if self.prim is None:
+            nuevo.prox = None
+            self.prim = nuevo 
+        else:
+            nuevo.prox = None
+            self.ult.prox = nuevo 
+
+        self.ult = nuevo 
+
     def mostrarNodo(self):
         p = self.prim 
 
@@ -77,16 +89,23 @@ class ListaSimple:
         e = p 
         del e 
 
+def long(A: ListaSimple) -> int: 
+    if A.prox is None or A.prox == A:
+        return 1 
+    else:
+        return 1 + long(A.prox)
+
 #De aca en adelante son solamente los bucles para poder probar las cargas y eliminaciones
 #Podes reemplazar cargaEncolada por Ordenada o Apilada
 
 lista = ListaSimple()
-lista.cargaEncolada(45)
-lista.cargaEncolada(123)
-lista.cargaEncolada(12)
-lista.cargaEncolada(90)
+lista.cargaOrdenada("Gonzalo")
+lista.cargaOrdenada("Zahira")
+lista.cargaOrdenada("Mario")
+lista.cargaOrdenada("Amarilla")
 lista.mostrarNodo()
 
+print(f"Longitud de la lista: {long(lista.prim)}")
 bandera = True
 while bandera:
     numero = int(input("Ingrese un valor para eliminar: \n"))

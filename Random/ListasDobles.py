@@ -65,6 +65,19 @@ class ListaDoble:
         e = p 
         del e 
 
+    def cargaEncolada(self,numero):
+        nuevo = Nodo(numero)
+        if self.prim is None:
+            self.prim = nuevo 
+            self.ult = nuevo 
+            nuevo.ant = None 
+            nuevo.prox = None
+        else:
+            nuevo.prox = self.ult.prox
+            nuevo.ant = self.ult 
+            self.ult.prox = nuevo 
+            self.ult = nuevo 
+
     def mostrarNodo(self):
         p = self.prim
         while p is not None:        #Equivalente a poner Mientras p <> nil 
@@ -80,7 +93,7 @@ bandera = True
 while bandera:
     numero = int(input("Ingrese un numero mayor a cero \n"))
     if numero >= 0:
-        lista.cargaOrdenada(numero)
+        lista.cargaEncolada(numero)
     else: 
         bandera = False
 

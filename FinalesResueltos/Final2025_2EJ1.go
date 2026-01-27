@@ -1,122 +1,150 @@
-Accion Ejercicio1 es 
- Ambiente 
-	sec, salida1, salida2: secuencia de caracteres
-	v: caracter 
-
-	nodo = registro 
-		dato: AN(1)
-		prox: puntero a nodo 
-	FReg 
-
-	p, prim, q, ant: puntero a nodo 
-	zona1, infraccion, masdedos: booleano 
-	cant_z1, cant_infraccion, cant_total, mayor: entero
+Accion ej1 es 
+	Ambiente 
 	
-	procedimiento cargaEncolada() es 
-		si prim = nil entonces 
-			*q.prox:= prim  
-			prim:= q 
-		sino 
-			p:= prim; ant:= nil
-			Mientras (p<>nil) hacer 
-				ant:= p 	
-				p:= *p.prox
-			FM 
-			
-			*ant.prox:= q 
-			*q.prox:= p 
-		fsi 
-	FP 
-	
+	sec,sal1,sal2: secuencia de caracteres
+	s: caracter 
 	A: arreglo[1...4] de enteros 
 
-	procedimiento cargarTipo() es 
-		segun *p.dato hacer 
-			= "A": A[1]:= A[1] + 1 
-			= "B": A[2]:= A[2] + 1 
-			= "C": A[3]:= A[3] + 1 
-			= "D": A[4]:= A[4] + 1 
-		Fsegun
-	FP 
+	nodo = registro 
+		char: AN(1)
+		prox: puntero a nodo 
+	Freg 
+	prim,p,q,ant,x: puntero a nodo 
 
- Proceso 
-	 	Arr(sec)
-		Avz(sec,v)
-		Crear(salida1); Crear(salida2)
-		zona1:= falso; infraccion:= falso; masdedos:= falso 
-		cant_z1:=0; cant_infraccion:=0; cant_total:=0; mayor:=0 
-		prim:= nil
+	Procedimiento cargarEncolada()
+		Nuevo(q); *q.char:= s 
+		si prim = nil entonces 
+			*q.prox:= prim 
+			prim:= q 
+		sino 
+			ant:= nil; p:= prim 
+			Mientras p <> nil hacer
+				ant:= p 
+				p:= *p.prox 
+			FM 
+
+			*q.prox:= *ant.prox
+			*ant.prox:= q 
+		Fsi 
+	FProcedimiento 
+
+	Procedimiento guardarPatente()
+		repetir 
+			cargarEncolada()
+			Avz(sec,s)
+		Hasta que (s = "-")
+	FProcedimiento
+
+	Procedimiento grabarSec1()
+		p:= prim
+		Mientras *p.char <> "+" hacer 
+			Esc(sal1,*p.char)
+		FM 
+		Esc(sal1,*p.char)
+	FProcedimiento
+
+	Procedimiento grabarSec2()
+		p:= prim 
+		Mientras *p.char <> "+" hacer 
+			Esc(sal2,*p.char)
+		FM 
+		Esc(sal2,*p.char)
+	FProcedimiento
+
+	Procedimiento verMayor()
+		Para i:= 1 hasta 4 hacer 
+			si A[i] > mayor entonces 
+				mayor:= A[i]
+				tipo:= i 
+			Fsi 
+		FPara 
+	FProcedimiento
+
+	Funcion obtTipo(x: entero): AN 
+		segun x hacer 
+			1: obtTipo:= "A"
+			2: obtTipo:= "B"
+			3: obtTipo:= "C"
+			4: obtTipo:= "D"
+		Fsegun 
+	FFuncion 
+
+	zona1,inf,masde2: booleano 
+	contz1,cont2,porc1,porc2,total,mayor,tipo: entero 
+	Proceso 
+		Arr(sec); Avz(sec,s)
+		Crear(sal1); Crear(sal2)
+		zona1:= falso; inf:= falso; masde2:= falso 
+		mayor:= 0; tipo:= 0; contz1:= 0; cont2:= 0; porc1:= 0; porc2:= 0 
+		Para i:= 1 hasta 4 hacer 
+			A[i]:= 0 
+		FPara 
 
 		Mientras NFDS(sec) hacer 
-			Mientras v <> "*" hacer 
-				Mientras v <> "+" hacer  
-					Nuevo(q); *q.dato:= v 
-					cargaEncolada()
-				FM 
-				Avz(sec,v)
-				cant_total:= cant_total + 1 
+			guardarPatente()
 
-				p:= prim 
-				Mientras (prim<>nil) hacer 
-					Mientras (*p.dato <> "-") hacer 
-						p:= *p.prox 
-					FM 
-					p:= *p.prox 
+			cargarEncolada()
+			segun s hacer 
+				"A": A[1]:= A[1]+1
+				"B": A[2]:= A[2]+1 
+				"C": A[3]:= A[3]+1 
+				"D": A[4]:= A[4]+1 
+			Fsegun
+			Avz(sec,s)
 
-					cargarTipo(); p:= *p.prox 
+			si convEntero(s) > 2 entonces
+				masde2:= verdadero 
+			Fsi 
+			cargarEncolada()
+			Avz(sec,s)
 
-					si conv_entero(*p.dato) > 2 entonces 
-						masdedos:= verdadero
-					fsi 
-					p:= *p.prox 
-					
-					si *p.dato = "S" entonces 
-						infraccion:= verdadero 
-						cant_infraccion:= cant_infraccion + 1
-					fsi 
-					p:= *p.prox; p:= *p.prox
+			si s = "S" entonces 
+				inf:= verdadero 
+			Fsi 
 
-					si *p.dato = "1" entonces 
-						zona1:= verdadero
-						cant_z1:= cant_z1 + 1 
-					fsi 
+			Para i:= 1 hasta 2 hacer 
+				cargarEncolada()
+				Avz(sec,s)
+			FPara  
 
-					p:= prim 
-					Mientras (p<>nil) hacer 
-						si (infraccion) y (masdedos) entonces 
-							grabar(salida2,*p.dato)
-						fsi 
-						si (zona1) entonces 
-							grabar(salida1,*p.dato)
-						fsi 
+			si s = "1" entonces 
+				zona1:= verdadero 
+			Fsi 
+			cargarEncolada()
+			Avz(sec,s)
+			cargarEncolada()
+			Avz(sec,s)
 
-						prim:= *p.prox 
-						disponer(p)
-						p:= prim 
-					FM 
+			si inf y masde2 entonces 
+				grabarSec2()
+				inf:= falso; masde2:= falso 
+				cont2:= cont2+1 
+			sino 
+				si zona1 entonces 
+					grabarSec1()
+					zona1:= falso
+					contz1:= contz1+1  
+				Fsi 
+			Fsi 
 
-					infraccion:= falso; masdedos:= falso; zona1:= falso 
-				FM 
-			FM 
-		FM
-		
-		Para i:= 1 a 4 hacer 
-			si mayor < A[i] entonces 
-				mayor:= A[i]
-			fsi 
-		FPara
+			total:= total+1 
+		FM 
+		Cerrar(sec); Cerrar(sal1); Cerrar(sal2)
 
-	 	Esc("Vehiculos z1: ",cant_z1," Porcentaje: ",(cant_z1/cant_total)*100,"%")
-		Esc("Vehiculos con infraccion: ",cant_infraccion," Porcentaje: ",(cant_infraccion/cant_total)*100,"%")
-		Esc("")
-		Cerrar(salida1); Cerrar(salida2); Cerrar(sec)
-	FProceso
+		verMayor()
+		Esc("El tipo que mas circulo es:",obtTipo(tipo))
+
+		porc1:= (contz1/total)*100; porc2:= (cont2/total)*100
+
+		Esc("Cantidad de vehiculos zona 1:",contz1,"Porcentaje:",porc1,"%")
+		Esc("Cantidad de vehiculos con infraccion y circulacion mayor a 2 horas:",cont2,"porcentaje:",porc2,"%")
+
+	FProceso 
 FAccion
 
 
 
-					
-					
+
+		 
 
 
-		

@@ -1,9 +1,9 @@
 // sumatoria hasta N de (3i + 1), con i = 1 
 
-Funcion Sumatoria(n,i: enteros): entero 
+Funcion Sumatoria(n,i,suma: enteros): entero 
 	si n = 0 entonces
-		Sumatoria:= i 
+		Sumatoria:= suma
 	sino
-		Sumatoria(n - 1, (3*i) + 1) 
+		Sumatoria(n-1,i+1,suma+((3*i)+1)) 
 	fsi 
 FFuncion
