@@ -89,9 +89,6 @@ def burbuja(lista: list):
 
     return lista
 
-
-#print(burbuja(A))
-
 def seleccion(lista: list):
     for i in range(0,len(lista)-1):
         x = lista[i]
@@ -129,6 +126,7 @@ Ar = ["A","B","C","D","E","F","G","H","I","J","K"]
 #print(busquedaBinaria(Ar,"B",0))
 
 def invertirArreglo(A:list,ind:int):
+    x: str
     if ind < 11:
         x = A[10-ind]
         invertirArreglo(A,ind+1)
@@ -138,7 +136,18 @@ def invertirArreglo(A:list,ind:int):
 
 #print(invertirArreglo(Ar,0))
 
+def insercionDirecta(A:list):
+    for i in range(1,len(A)):
+        actual = A[i]
+        j = i-1
+        while (j>=0) and (A[j]>actual):
+            A[j+1] = A[j]
+            j = j-1
+        
+        A[j+1] = actual 
 
+    return A
 
+print(insercionDirecta(A))
 
     

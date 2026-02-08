@@ -214,3 +214,31 @@ Procedimiento cargaEncolada()
 	Fsi 
 	ult:= q 
 FProcedimiento 
+
+Procedimiento insercionDirecta()
+	Para i:= 2 hasta N hacer 
+		actual:= A[i]
+		j:= i-1
+		Mientras (j>0) y A[j]<actual hacer 
+			A[j+1]:= A[j]
+			j:= j-1
+		FM 
+		
+		A[j+1]:= actual 
+	FPara 
+FProcedimiento
+
+Procedimiento intercambioDirecto()
+	bandera:= falso 
+	Mientras NO bandera hacer 
+		bandera:= verdadero 
+		Para i:= 1 hasta N hacer 
+			si A[i] > A[i+1] entonces 
+				x:= A[i]
+				A[i]:= A[i+1]
+				A[i+1]:= x 
+				bandera:= falso 
+			Fsi 
+		FPara 
+	FM 
+FProcedimiento

@@ -61,6 +61,20 @@ Funcion calcNivel(prim: puntero a nodo): entero
 	Fsi 
 FFuncion
 
+Procedimiento mostrarCamino(prim: puntero a nodo; valor: entero)
+	si prim <> nil enotnces
+		Esc(prim.dato) 
+		si valor < prim.dato entonces 
+			mostrarCamino(prim.izq,valor)
+		sino 
+			si valor > prim.dato entonces 
+				mostrarCamino(prim.der,valor)
+			Fsi 
+		Fsi 
+	Fsi 
+FProcedimiento
+
+
 Procedimiento enOrden(prim: puntero a nodo)
 	si prim <> nil entonces 
 		enOrden(*prim.izq)
@@ -84,3 +98,11 @@ Procedimiento postOrden(prim: puntero a nodo)
 		tratarRaiz()
 	fsi 
 FProcedimiento
+
+Funcion contarNodos(prim: puntero a nodo): entero 
+	si prim = nil entonces 
+		contarNodos:= 0 
+	sino 
+		contarNodos:= contarNodos(prim.izq) + contarNodos(prim.der) + 1 
+	Fsi
+FFuncion
