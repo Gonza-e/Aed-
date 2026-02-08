@@ -15,3 +15,6 @@ if capicua(numero, 0, numero):
     print("El numero es capicua")
 else: 
     print("El numero no es capicua") 
+
+"a"
+
