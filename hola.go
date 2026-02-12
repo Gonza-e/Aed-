@@ -242,3 +242,17 @@ Procedimiento intercambioDirecto()
 		FPara 
 	FM 
 FProcedimiento
+
+nodo1 = registro 
+	dato: AN(30)
+	prox: puntero a nodo1 
+Freg 
+p: puntero a nodo1
+
+nodo2 = registro 
+	prim: puntero a nodo1 
+	prox: puntero a nodo2 
+Freg 
+q: puntero a nodo2
+
+p:= *q.*prim.dato  
