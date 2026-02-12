@@ -1,23 +1,29 @@
-def casiPerfecto(num1,suma,num2: int) -> bool:
-    if num1 == 1:
-        return True 
+def casiPerfectos(n1,n2,s) -> bool:
+    if n1 == 1: 
+        return True
     else:
-        if (num2 == 0):
-            if (suma == num1 - 1): 
+        if n2 == 0:
+            if s == n1-1:
                 return True 
-            else: 
+            else:
                 return False 
-        else: 
-            if ((num1 % num2) == 0): 
-                return casiPerfecto(num1, suma + num2, num2 - 1)
-            else: 
-                return casiPerfecto(num1, suma, num2 - 1)
-            
+        else:
+            if n1 % n2 == 0:
+                return casiPerfectos(n1,n2-1,s+n2)
+            else:
+                return casiPerfectos(n1,n2-1,s)
+        
 
-print("Ingrese un numero")
-numero = int(input())
+while True:
+    cont = 0
+    A = int(input("Ingrese un numero positivo mayor a 0: \n"))
+    B = int(input("Ingrese un numero positivo mayor a 0: \n"))
 
-if casiPerfecto(numero, 0,numero - 1): 
-    print("El numero es casi perfecto")
-else: 
-    print("El numero no es casi perfecto")
+    if (A>0) and (A<B):
+        for i in range(A,B+1):
+            if casiPerfectos(i,i-1,0):
+                cont += 1
+    else:
+        print("Ingrese otro rango")
+
+    print(f"La cantidad de numeros casi perfectos en el rango es de: {cont}")
