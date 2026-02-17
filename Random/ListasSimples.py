@@ -95,17 +95,39 @@ def long(A: ListaSimple) -> int:
     else:
         return 1 + long(A.prox)
 
+def consec(A:ListaSimple,cont:int,d1,d2:int) -> bool:
+    if A.prox is None:
+        return False  
+    else:
+        if cont > 3:
+            return True 
+        else:
+            d1=A.num
+            d2=(A.prox).num
+            if d1 == d2: 
+                return consec(A.prox,cont+1,d1,d2)
+            else:
+                return consec(A.prox,1,d1,d2)
+        
 #De aca en adelante son solamente los bucles para poder probar las cargas y eliminaciones
 #Podes reemplazar cargaEncolada por Ordenada o Apilada
 
 lista = ListaSimple()
-lista.cargaOrdenada("Gonzalo")
-lista.cargaOrdenada("Zahira")
-lista.cargaOrdenada("Mario")
-lista.cargaOrdenada("Amarilla")
+lista.cargaEncolada2(4)
+lista.cargaEncolada2(5)
+lista.cargaEncolada2(5)
+lista.cargaEncolada2(5)
+lista.cargaEncolada2(5)
+lista.cargaEncolada2(6)
 lista.mostrarNodo()
 
 print(f"Longitud de la lista: {long(lista.prim)}")
+
+if consec(lista.prim,0,0,0): 
+    print("Cumple")
+else:
+    print("No cumple")
+
 bandera = True
 while bandera:
     numero = int(input("Ingrese un valor para eliminar: \n"))
@@ -118,4 +140,6 @@ while bandera:
     if lista.prim == None:
         bandera = False
     lista.mostrarNodo()
+
+
 
