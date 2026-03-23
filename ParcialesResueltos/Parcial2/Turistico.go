@@ -1,87 +1,95 @@
 Accion Ejercicio1 es 
- Ambiente 
-	Fecha = registro 
-		dia: N(2)
-		mes: N(2)
-		anio: N(4)
-	FinRegistro
-	CLIENTES = registro 
-		clave = registro 
-			nro_cliente: N(5)
+	Ambiente 
+		Fecha = registro 
+			dia: N(2)
+			mes: N(2)
+			anio: N(4)
 		FinRegistro
-		apeynom: AN(30)
-		dni: N(8)
-		id_paquete: N(1)
-		saldo: N(10)
-		estado: AN(12)
-		cat: AN(10)
-		puntos: N(4)
-		f_baja: Fecha
-	FinRegistro
-	arch, arch_act: archivo de CLIENTES ordenado por clave 
-	reg, reg_act, aux: CLIENTES
-	NOVEDADES = registro 
-	 clave = registro 
-			nro_cliente: N(5)
-			nro_novedad: (0...999)
+		CLIENTES = registro 
+			clave = registro 
+				nro_cliente: N(5)
+			FinRegistro
+			apeynom: AN(30)
+			dni: N(8)
+			id_paquete: N(1)
+			saldo: N(10)
+			estado: AN(12)
+			cat: AN(10)
+			puntos: N(4)
+			f_baja: Fecha
 		FinRegistro
-		apeynom: AN(30)
-		dni: N(8)
-		id_paquete: N(1)
-		f_novedad: Fecha
-		monto: N(10)
-	FinRegistro
-	arch_nov: archivo de NOVEDADES ordenado por clave 
-	reg_nov: NOVEDADES
-	PAQUETES_TURISTICOS = registro 
-		id_paquete: N(1)
-		nombre: AN(10)
-		costo: N(10)
-		destino: AN(15)
-	FinRegistro
-	arch_turistico: archivo de PAQUETES_TURISTICOS indexado por id_paquete
-	reg_turistico: PAQUETES_TURISTICOS
-	m_total, c_baja, c_simple, c_plata, c_oro, c_diamante, total: entero
-	Procedimiento leer_nov() es 
-	 	Leer(arch_nov,reg_nov)
-	 	Si FDA(arch_nov) entonces 
-		 	reg_nov.clave:= HV
-		FinSi 
-	FinProcedimiento 
-	Procedimiento leer_cli() es 
-		Leer(arch,reg)
-	 	Si FDA(arch) entonces 
-		 	reg.clave:= HV
-		FinSi
-	FinProcedimiento
-	Procedimiento contar_cat() es 
-		Segun reg.cat hacer 
-			"simple": c_simple:= c_simple + 1 
-			"plata": c_plata:= c_plata + 1 
-			"oro": c_oro:= c_oro + 1 
-			"diamante": c_diamante:= c_diamante + 1
-		FinSegun 
-	FinProcedimiento
- 	Procedimiento procesos_iguales() es 
-	 	Si reg_nov.nro_novedad = 0 entonces 
-		 	Esc("Alta no disponible")
-		Sino 
-			Si reg_nov.nro_novedad = 999 entonces 
-				c_baja:= c_baja + 1
-				m_total:= m_total + reg_nov.monto 
-				aux.f_baja:= reg_nov.f_novedad
-			Sino 
-			 	Esc("Pago del cliente",reg_nov.apeynom)
+		arch, arch_act: archivo de CLIENTES ordenado por clave 
+		reg, reg_act, aux: CLIENTES
+
+		NOVEDADES = registro 
+			clave = registro 
+				nro_cliente: N(5)
+				nro_novedad: (0...999)
+			FinRegistro
+			apeynom: AN(30)
+			dni: N(8)
+			id_paquete: N(1)
+			f_novedad: Fecha
+			monto: N(10)
+		FinRegistro
+		arch_nov: archivo de NOVEDADES ordenado por clave 
+		reg_nov: NOVEDADES
+
+		PAQUETES_TURISTICOS = registro 
+			id_paquete: N(1)
+			nombre: AN(10)
+			costo: N(10)
+			destino: AN(15)
+		FinRegistro
+		arch_turistico: archivo de PAQUETES_TURISTICOS indexado por id_paquete
+		reg_turistico: PAQUETES_TURISTICOS
+		m_total, c_baja, c_simple, c_plata, c_oro, c_diamante, total: entero
+
+		Procedimiento leer_nov() es 
+			Leer(arch_nov,reg_nov)
+			Si FDA(arch_nov) entonces 
+				reg_nov.clave:= HV
+			FinSi 
+		FinProcedimiento 
+
+		Procedimiento leer_cli() es 
+			Leer(arch,reg)
+			Si FDA(arch) entonces 
+				reg.clave:= HV
 			FinSi
-		FinSi
-	FinProcedimiento
-	Procedimiento porcentaje() es 
-		c_diamante:= (total/c_diamante)*100; Esc("Porcentaje diamante",c_diamante,"%")
-		c_oro:= (total/c_oro)*100; Esc("Porcentaje oro",c_oro,"%")
-		c_plata:= (total/c_plata)*100; Esc("Porcentaje plata",c_plata,"%")
-		c_simple:= (total/c_simple)*100; Esc("Porcentaje simple",c_simple,"%")
-	FinProcedimiento
- Proceso 
+		FinProcedimiento
+
+		Procedimiento contar_cat() es 
+			Segun reg.cat hacer 
+				"simple": c_simple:= c_simple + 1 
+				"plata": c_plata:= c_plata + 1 
+				"oro": c_oro:= c_oro + 1 
+				"diamante": c_diamante:= c_diamante + 1
+			FinSegun 
+		FinProcedimiento
+
+		Procedimiento procesos_iguales() es 
+			Si reg_nov.nro_novedad = 0 entonces 
+				Esc("Alta no disponible")
+			Sino 
+				Si reg_nov.nro_novedad = 999 entonces 
+					c_baja:= c_baja + 1
+					m_total:= m_total + reg_nov.monto 
+					aux.f_baja:= reg_nov.f_novedad
+				Sino 
+					Esc("Pago del cliente",reg_nov.apeynom)
+				FinSi
+			FinSi
+		FinProcedimiento
+
+		Procedimiento porcentaje() es 
+			c_diamante:= (total/c_diamante)*100; Esc("Porcentaje diamante",c_diamante,"%")
+			c_oro:= (total/c_oro)*100; Esc("Porcentaje oro",c_oro,"%")
+			c_plata:= (total/c_plata)*100; Esc("Porcentaje plata",c_plata,"%")
+			c_simple:= (total/c_simple)*100; Esc("Porcentaje simple",c_simple,"%")
+		FinProcedimiento
+
+	Proceso 
 		Abrir E/(arch)
 		Abrir E/(arch_nov)
 		Abrir E/(arch_turistico)
@@ -137,44 +145,46 @@ Accion Ejercicio1 es
 FinAccion
 
 Accion Ejercicio2 es 
- Ambiente
-	Fecha = registro 
-		dia: N(2)
-		mes: N(2)
-		anio: N(4)
-	FinRegistro
- 	CLIENTES = registro 
-		clave = registro 
-			nro_cliente: N(5)
+	Ambiente
+		Fecha = registro 
+			dia: N(2)
+			mes: N(2)
+			anio: N(4)
 		FinRegistro
-		apeynom: AN(30)
-		dni: N(8)
-		id_paquete: N(1)
-		saldo: N(10)
-		estado: AN(12)
-		cat: AN(10)
-		puntos: N(4)
-		f_baja: Fecha
-    FinRegistro
-	arch: archivo de CLIENTES ordenado por clave 
-	reg: CLIENTES
- 	PAQUETES_TURISTICOS = registro 	
-		id_paquete: N(1)
-		nombre: AN(10)
-		costo: N(10)
-		destino: AN(15)
-	FinRegistro
-	arch_turistico: archivo de PAQUETES_TURISTICOS indexado por id_paquete
-	reg_turistico: PAQUETES_TURISTICOS
-	clientes: arreglo[1...5,1...13] de enteros 
-	mayor, paquete_may: entero 
- 	Funcion obtener_paquete(x: entero): AN 
-		reg_turistico.id_paquete:= x 
-		Leer(arch_turistico,reg_turistico)
-		Si EXISTE entonces 
-			obtener_paquete:= reg_turistico.nombre
-		FinSi
-	FinFuncion
+		CLIENTES = registro 
+			clave = registro 
+				nro_cliente: N(5)
+			FinRegistro
+			apeynom: AN(30)
+			dni: N(8)
+			id_paquete: N(1)
+			saldo: N(10)
+			estado: AN(12)
+			cat: AN(10)
+			puntos: N(4)
+			f_baja: Fecha
+		FinRegistro
+		arch: archivo de CLIENTES ordenado por clave 
+		reg: CLIENTES
+		
+		PAQUETES_TURISTICOS = registro 	
+			id_paquete: N(1)
+			nombre: AN(10)
+			costo: N(10)
+			destino: AN(15)
+		FinRegistro
+		arch_turistico: archivo de PAQUETES_TURISTICOS indexado por id_paquete
+		reg_turistico: PAQUETES_TURISTICOS
+		clientes: arreglo[1...5,1...13] de enteros 
+		mayor, paquete_may: entero 
+
+		Funcion obtener_paquete(x: entero): AN 
+			reg_turistico.id_paquete:= x 
+			Leer(arch_turistico,reg_turistico)
+			Si EXISTE entonces 
+				obtener_paquete:= reg_turistico.nombre
+			FinSi
+		FinFuncion
  	Proceso
 		Abrir E/(arch)
 		Abrir E/(arch_turistico)

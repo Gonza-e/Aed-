@@ -1,40 +1,40 @@
 Accion Ejercicio2 es 
- Ambiente
-	Fecha = registro 
-		dia: N(2)
-		mes: N(2)
-		anio: N(4)
-	FinRegistro
+ 	Ambiente
+		Fecha = registro 
+			dia: N(2)
+			mes: N(2)
+			anio: N(4)
+		FinRegistro
 
-	RECLAMOS = registro 
-		cod_recl: N(10)
-		f_reclamo: Fecha 
-		mailcliente: AN(20)
-		urgencia: ("A","M","B")
-		detalle: AN(100)
-		region: N(2)
-	FinRegistro 
-	arch: archivo de RECLAMOS
-	reg: RECLAMOS
-	i, j, mayor, mes_may, c_meses: entero 
+		RECLAMOS = registro 
+			cod_recl: N(10)
+			f_reclamo: Fecha 
+			mailcliente: AN(20)
+			urgencia: ("A","M","B")
+			detalle: AN(100)
+			region: N(2)
+		FinRegistro 
+		arch: archivo de RECLAMOS
+		reg: RECLAMOS
+		i, j, mayor, mes_may, c_meses: entero 
 
-	Funcion obtener_urgencia(j: entero): AN
-		Segun j hacer 
-			1: obtener_urgencia:= "Alta"
-			2: obtener_urgencia:= "Media"
-			3: obtener_urgencia:= "Baja"
-		FinSegun
-	FinFuncion
+		Funcion obtener_urgencia(j: entero): AN
+			Segun j hacer 
+				1: obtener_urgencia:= "Alta"
+				2: obtener_urgencia:= "Media"
+				3: obtener_urgencia:= "Baja"
+			FinSegun
+		FinFuncion
 
-	Procedimiento urgencia() es
-		segun reg.urgencia hacer 
-			"A": j:=1
-			"M": j:=2
-			"B": j:=3
-		FinSegun 
-	FinProcedimiento
+		Procedimiento urgencia() es
+			segun reg.urgencia hacer 
+				"A": j:=1
+				"M": j:=2
+				"B": j:=3
+			FinSegun 
+		FinProcedimiento
 
-	reclamos: arreglo[1...13,1...4] de enteros
+		reclamos: arreglo[1...13,1...4] de enteros
 	Proceso 
 		Abrir E/(arch)
 		Leer(arch,reg)

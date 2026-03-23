@@ -1,71 +1,77 @@
 Accion Ejercicio1 (jugador: arreglo[1...26] de AN) es 
- Ambiente 
-	STOCK = registro 
-		clave = registro 
-			id_producto: N(5)
-		FinRegistro 
-		nombre: AN(30)
-		descripcion: AN(100)
-		cat: AN(1)
-		new_lanzamiento: ("Si","No")
-		porc_desc: N(2,2)
-		stock: N(3)
-	FinRegistro
-	arch_stock, stock_act: archivo de STOCK ordenado por clave 
-	reg_stock, reg_act, aux: STOCK
-	PREVENTA = registro 
-		clave = registro 
-			id_producto: N(5)
-			id_cliente: N(5)
+	Ambiente 
+		STOCK = registro 
+			clave = registro 
+				id_producto: N(5)
+			FinRegistro 
+			nombre: AN(30)
+			descripcion: AN(100)
+			cat: AN(1)
+			new_lanzamiento: ("Si","No")
+			porc_desc: N(2,2)
+			stock: N(3)
 		FinRegistro
-		cantidad: N(3)
-		es_personzalidado: AN(2)
-		nro_jugador: (1...26)
-		nom_jugador: AN(30)
-		talle: AN(1)
-	FinRegistro
-	arch_pre: archivo de PREVENTA ordenado por clave 
-	reg_pre: PREVENTA
-	A: arreglo[1...26] de enteros 
-	cat: arreglo[1...4] de enteros
-	i, c_sinstock, calc_stock, menor, cat_menor: entero
-	Procedimiento leer_stock() es 
-		Leer(arch_stock,reg_stock)
-	 	Si FDA entonces 
-		 	reg_stock.clave:= HV
-		FinSi 
-	FinProcedimiento 
-	Procedimiento leer_preventa() es 
-		Leer(arch_pre,reg_pre)
-	 	Si FDA entonces 
-		 	reg_pre.clave:= HV
-		FinSi
-	FinProcedimiento
-	Procedimiento contar_cat() es 
-		segun reg_stock.cat hacer 
-			"C": i:= 1 
-			"R": i:= 2 
-			"G": i:= 3 
-			"S": i:= 4
-		FinSegun 
-	 	A[i]:= A[i] + 1
-	FinProcedimiento
-	Procedimiento procesos_iguales() es 
-		Mientras aux.clave = reg_pre.clave hacer 
-		 	Si reg_stock.stock > reg_pre.cantidad entonces
-			 	aux.stock:= aux.stock - reg_pre.cantidad
+		arch_stock, stock_act: archivo de STOCK ordenado por clave 
+		reg_stock, reg_act, aux: STOCK
+
+		PREVENTA = registro 
+			clave = registro 
+				id_producto: N(5)
+				id_cliente: N(5)
+			FinRegistro
+			cantidad: N(3)
+			es_personzalidado: AN(2)
+			nro_jugador: (1...26)
+			nom_jugador: AN(30)
+			talle: AN(1)
+		FinRegistro
+		arch_pre: archivo de PREVENTA ordenado por clave 
+		reg_pre: PREVENTA
+		A: arreglo[1...26] de enteros 
+		cat: arreglo[1...4] de enteros
+		i, c_sinstock, calc_stock, menor, cat_menor: entero
+
+		Procedimiento leer_stock() es 
+			Leer(arch_stock,reg_stock)
+			Si FDA entonces 
+				reg_stock.clave:= HV
+			FinSi 
+		FinProcedimiento 
+
+		Procedimiento leer_preventa() es 
+			Leer(arch_pre,reg_pre)
+			Si FDA entonces 
+				reg_pre.clave:= HV
 			FinSi
-		 	calc_stock:= (reg_stock.stock - reg_pre.cantidad)
-			Si calc_stock <= 0 entonces 
-			 	calc_stock:= calc_stock * (-1)
-			FinSi
-			c_sinstock:= c_sinstock + calc_stock
-			i:= reg_pre.nro_jugador
-			A[i]:= A[i] + 1 
-			contar_cat()
-			leer_preventa()
-		FinMientras
-	FinProcedimiento 
+		FinProcedimiento
+
+		Procedimiento contar_cat() es 
+			segun reg_stock.cat hacer 
+				"C": i:= 1 
+				"R": i:= 2 
+				"G": i:= 3 
+				"S": i:= 4
+			FinSegun 
+			A[i]:= A[i] + 1
+		FinProcedimiento
+
+		Procedimiento procesos_iguales() es 
+			Mientras aux.clave = reg_pre.clave hacer 
+				Si reg_stock.stock > reg_pre.cantidad entonces
+					aux.stock:= aux.stock - reg_pre.cantidad
+				FinSi
+				calc_stock:= (reg_stock.stock - reg_pre.cantidad)
+				Si calc_stock <= 0 entonces 
+					calc_stock:= calc_stock * (-1)
+				FinSi
+				c_sinstock:= c_sinstock + calc_stock
+				i:= reg_pre.nro_jugador
+				A[i]:= A[i] + 1 
+				contar_cat()
+				leer_preventa()
+			FinMientras
+		FinProcedimiento 
+
 	Proceso 
 		Abrir E/(arch_pre)
 		Abrir E/(arch_stock)
@@ -79,7 +85,8 @@ Accion Ejercicio1 (jugador: arreglo[1...26] de AN) es
 		Para i:= 1 a 4 hacer 
 			cat[i]:= 0 
 		FinPara
-	 Mientras (reg_stock.clave <> HV) o (reg_pre.clave <> HV) hacer 
+
+	 	Mientras (reg_stock.clave <> HV) o (reg_pre.clave <> HV) hacer 
 	 	 	Si reg_stock.clave < reg_pre.clave entonces 
 				reg_act:= reg_stock
 				Grabar(stock_act,reg_act)
@@ -101,6 +108,7 @@ Accion Ejercicio1 (jugador: arreglo[1...26] de AN) es
 				FinSi
 			FinSi
 		FinMientras
+
 	 	Para i:= 1 a 26 hacer 
 	 	 	Si A[i] > mayor entonces 
 				mayor:= A[i]
@@ -123,22 +131,24 @@ Accion Ejercicio1 (jugador: arreglo[1...26] de AN) es
 FinAccion
 
 Accion Ejercicio2 es 
- Ambiente 
- 	PROMOCIONES = registro 
-		cod_suc: (1...10)
-		cod_promocion: (0...5)
-		cod_prod: AN(7)
-		cant: N(4)
-	FinRegistro
-	arch: archivo de PROMOCIONES
-	reg: PROMOCIONES
-	promos: arreglo[1...7,1...11] de Datos 
-	Datos = registro 
-		importe: N(6)
-		cant: N(4)
-	FinRegistro 
-	promedio, mayor, prom_may, mayor2, monto: entero 
- Proceso 
+	Ambiente 
+		PROMOCIONES = registro 
+			cod_suc: (1...10)
+			cod_promocion: (0...5)
+			cod_prod: AN(7)
+			cant: N(4)
+		FinRegistro
+		arch: archivo de PROMOCIONES
+		reg: PROMOCIONES
+		promos: arreglo[1...7,1...11] de Datos 
+
+		Datos = registro 
+			importe: N(6)
+			cant: N(4)
+		FinRegistro 
+		promedio, mayor, prom_may, mayor2, monto: entero 
+		
+	Proceso 
 		Abrir E/(arch)
 		Leer(arch,reg)
 		promedio:=0; mayor:=0; prom_may:=0; mayor2:=0; monto:=0; suc_may:=0

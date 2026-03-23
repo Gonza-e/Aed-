@@ -1,20 +1,20 @@
 Accion corredores (Corredor: arreglo[1...2,1...20] de AN) es
- Ambiente
-	Historico = registro 
-		año: N(4)
-		id_carrera: N(2)
-		nro_equipo: (1...20)
-		nro_piloto: (1...2)
-		p_obtenidos: N(2)
-		pos_final: (1...20)
-	FReg
+ 	Ambiente
+		Historico = registro 
+			año: N(4)
+			id_carrera: N(2)
+			nro_equipo: (1...20)
+			nro_piloto: (1...2)
+			p_obtenidos: N(2)
+			pos_final: (1...20)
+		FReg
 
-	arch: archivo de Historico
-	reg: Historico
+		arch: archivo de Historico
+		reg: Historico
 
-	A: arreglo[1...3,1...20] de enteros
-	
-	i,j,masPuntos,pilotoMayJ,pilotoMayI: enteros 
+		A: arreglo[1...3,1...20] de enteros
+		
+		i,j,masPuntos,pilotoMayJ,pilotoMayI: enteros 
 
 	Proceso 
 		Abrir E/(arch); Leer(arch,reg)

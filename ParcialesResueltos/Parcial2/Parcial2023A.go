@@ -1,86 +1,89 @@
 Accion Ejercicio1 es 
- Ambiente 
-	Fecha = registro 
-		dia: N(2)
-		mes: N(2)
-		anio: N(4)
-	FinRegistro
-	BICICLETAS = registro 
-		clave = registro 
-			nro_serie: N(4)
-			modelo: AN(10)
-		FinRegistro 
-		f_adq: Fecha
-		f_ult_mant: Fecha
-		disp: (verdadero, falso)
-	FinRegistro
-	bici, salida: archivos de BICICLETAS ordenado por clave 
-	reg_b, sal, aux: BICICLETAS
-	NOVEDADES = registro 
-		clave = registro	
-			nro_serie: N(4)
-			modelo: AN(10)
-			tipo_novedad: N(1)
-			f_novedad: Fecha
+	Ambiente 
+		Fecha = registro 
+			dia: N(2)
+			mes: N(2)
+			anio: N(4)
 		FinRegistro
-		hora_i: N(4)
-		hora_f: N(4)
-		nro_circuito: N(5)
-		id_usu: N(5)
-	FinRegistro
-	nov: archivo de NOVEDADES ordenado por clave 
-	reg_n: NOVEDADES
-	USUARIOS = registro 
-		id_usu: N(5)
-		DNI: N(8)
-		sex: (m o f)
-		apeynom: AN(30)
-		domicilio: AN(20)
-		localidad: AN(20)
-		provincia: AN(20)
-		edad: N(2)
-	FinRegistro
-	usu: archivo de USUARIOS indexado por id_usu 
-	reg_u: USUARIOS
-	p_hombre, p_mujer, total: entero
+		
+		BICICLETAS = registro 
+			clave = registro 
+				nro_serie: N(4)
+				modelo: AN(10)
+			FinRegistro 
+			f_adq: Fecha
+			f_ult_mant: Fecha
+			disp: (verdadero, falso)
+		FinRegistro
+		bici, salida: archivos de BICICLETAS ordenado por clave 
+		reg_b, sal, aux: BICICLETAS
 
-	Procedimiento procesos_iguales() es 
-	 	Si reg_n.clave.tipo_novedad = 1 entonces 
-		 	Esc("Error")
-		Sino 
-			Si reg_n.clave.tipo_novedad = 2 entonces 
-				reg_u.id_usu:= reg_n.id_usu
-				Leer(usu, reg_u) 
-			 	Si EXISTE entonces
-				 	Segun reg_u.sexo hacer 
-						M: p_hombre:= p_hombre + 1 
-						F: p_mujer:= p_mujer + 1
-					FinSegun 
-				Sino 
-				 	Esc("El usuario no existe")
-				FinSi 
+		NOVEDADES = registro 
+			clave = registro	
+				nro_serie: N(4)
+				modelo: AN(10)
+				tipo_novedad: N(1)
+				f_novedad: Fecha
+			FinRegistro
+			hora_i: N(4)
+			hora_f: N(4)
+			nro_circuito: N(5)
+			id_usu: N(5)
+		FinRegistro
+		nov: archivo de NOVEDADES ordenado por clave 
+		reg_n: NOVEDADES
+
+		USUARIOS = registro 
+			id_usu: N(5)
+			DNI: N(8)
+			sex: (m o f)
+			apeynom: AN(30)
+			domicilio: AN(20)
+			localidad: AN(20)
+			provincia: AN(20)
+			edad: N(2)
+		FinRegistro
+		usu: archivo de USUARIOS indexado por id_usu 
+		reg_u: USUARIOS
+		p_hombre, p_mujer, total: entero
+
+		Procedimiento procesos_iguales() es 
+			Si reg_n.clave.tipo_novedad = 1 entonces 
+				Esc("Error")
 			Sino 
-				aux.nro_serie:= reg_n.nro_serie
-				aux.modelo:= reg_n.modelo
-				aux.f_ult_mant:= reg_n.f_novedad
-				aux.disp:= falso 
+				Si reg_n.clave.tipo_novedad = 2 entonces 
+					reg_u.id_usu:= reg_n.id_usu
+					Leer(usu, reg_u) 
+					Si EXISTE entonces
+						Segun reg_u.sexo hacer 
+							M: p_hombre:= p_hombre + 1 
+							F: p_mujer:= p_mujer + 1
+						FinSegun 
+					Sino 
+						Esc("El usuario no existe")
+					FinSi 
+				Sino 
+					aux.nro_serie:= reg_n.nro_serie
+					aux.modelo:= reg_n.modelo
+					aux.f_ult_mant:= reg_n.f_novedad
+					aux.disp:= falso 
+				FinSi
 			FinSi
-		FinSi
-	FinProcedimiento 
+		FinProcedimiento 
 
-	Procedimiento leer_bici() es 
-	 	Leer(bici, reg_b)
-	 	Si FDA(bici) entonces
-		 	reg_b.clave:= HV
-		FinSi
-	FinProcedimiento
+		Procedimiento leer_bici() es 
+			Leer(bici, reg_b)
+			Si FDA(bici) entonces
+				reg_b.clave:= HV
+			FinSi
+		FinProcedimiento
 
-	Procedimiento leer_nov() es 
-	 	Leer(nov, reg_n)
-	 	Si FDA(nov) entonces
-		 	reg_n.clave:= HV 
-		FinSi
-	FinProcedimiento
+		Procedimiento leer_nov() es 
+			Leer(nov, reg_n)
+			Si FDA(nov) entonces
+				reg_n.clave:= HV 
+			FinSi
+		FinProcedimiento
 
 	Proceso 
 		Abrir E/(bici)
@@ -134,23 +137,23 @@ FinAccion
 
 		      
 Accion Ejercicio2 (A: arreglo[1...2,1...6] de enteros) es 
- Ambiente 
-	 NOVEDADES = registro 
-		clave = registro	
-			nro_serie: N(4)
-			modelo: AN(10)
-			tipo_novedad: N(1)
-			f_novedad: Fecha
+	Ambiente 
+		NOVEDADES = registro 
+			clave = registro	
+				nro_serie: N(4)
+				modelo: AN(10)
+				tipo_novedad: N(1)
+				f_novedad: Fecha
+			FinRegistro
+			hora_i: N(4)
+			hora_f: N(4)
+			nro_circuito: N(5)
+			id_usu: N(5)
 		FinRegistro
-		hora_i: N(4)
-		hora_f: N(4)
-		nro_circuito: N(5)
-		id_usu: N(5)
-	FinRegistro
-	B: arreglo[1...3,1...7,1...2] de enteros 
-	nov: archivo de NOVEDADES ordenado por clave 
-	reg_n: NOVEDADES
-	paseo, circuito, mayor, i, j, k, valor, c_may, c_men: entero
+		B: arreglo[1...3,1...7,1...2] de enteros 
+		nov: archivo de NOVEDADES ordenado por clave 
+		reg_n: NOVEDADES
+		paseo, circuito, mayor, i, j, k, valor, c_may, c_men: entero
 	Proceso 
 		Abrir E/(nov)
 		Leer(nov,reg_n)

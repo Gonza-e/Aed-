@@ -1,80 +1,80 @@
 Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es 
- Ambiente
-	Fecha = registro 
-		dia: N(2)
-		mes: N(2)
-		anio: N(4)
-	FinRegistro 
-	BICICLETAS = registro 
-		clave = registro 
-			nro_serie: N(5)
-			modelo: AN(5)
+	Ambiente
+		Fecha = registro 
+			dia: N(2)
+			mes: N(2)
+			anio: N(4)
+		FinRegistro 
+		BICICLETAS = registro 
+			clave = registro 
+				nro_serie: N(5)
+				modelo: AN(5)
+			FinRegistro
+			f_adquisicion: Fecha
+			f_mantenimiento: Fecha
 		FinRegistro
-		f_adquisicion: Fecha
-		f_mantenimiento: Fecha
-	FinRegistro
-	arch, arch_act: archivo de BICICLETAS ordenado por clave 
-	reg, reg_act, aux: BICICLETAS
+		arch, arch_act: archivo de BICICLETAS ordenado por clave 
+		reg, reg_act, aux: BICICLETAS
 
-	NOVEDADES = registro 
-		clave = registro 
-			nro_serie: N(5)
-			modelo: AN(5)
+		NOVEDADES = registro 
+			clave = registro 
+				nro_serie: N(5)
+				modelo: AN(5)
+			FinRegistro
+			t_novedad: (1,2,3,4)
+			f_novedad: Fecha 
+			h_inicio: N(2)
+			h_fin: N(2)
+			circuito_nro: N(1)
+			id_usuario: AN(10)
 		FinRegistro
-		t_novedad: (1,2,3,4)
-		f_novedad: Fecha 
-		h_inicio: N(2)
-		h_fin: N(2)
-		circuito_nro: N(1)
-		id_usuario: AN(10)
-	FinRegistro
-	arch_nov: archivo de NOVEDADES ordenado por clave 
-	reg_nov: NOVEDADES
+		arch_nov: archivo de NOVEDADES ordenado por clave 
+		reg_nov: NOVEDADES
 
-	Procedimiento leer_bici() es 
-		Leer(arch,reg)
-	 	Si FDA(arch) hacer
-		 	reg.clave:= HV
-		FinSi 
-	FinProcedimiento 
+		Procedimiento leer_bici() es 
+			Leer(arch,reg)
+			Si FDA(arch) hacer
+				reg.clave:= HV
+			FinSi 
+		FinProcedimiento 
 
-	Procedimiento leer_nov() es 
-		Leer(arch_nov,reg_nov)
-	 	Si FDA(arch_nov) entonces 
-		 	reg_nov.clave:= HV
-		FinSi
-	FinProcedimiento
+		Procedimiento leer_nov() es 
+			Leer(arch_nov,reg_nov)
+			Si FDA(arch_nov) entonces 
+				reg_nov.clave:= HV
+			FinSi
+		FinProcedimiento
 
-	cir_usu, paseo_usu, diferenciar, valor: entero 
-	usuario: arreglo[1...2,1...6] de Proceso  
+		cir_usu, paseo_usu, diferenciar, valor: entero 
+		usuario: arreglo[1...2,1...6] de Proceso  
 
-	Proceso = registro 
-		monto: N(6)
-		paseos: N(6)
-	FinRegistro
+		Proceso = registro 
+			monto: N(6)
+			paseos: N(6)
+		FinRegistro
 
- 	Procedimiento procesos_iguales() es 
-	 	Si reg_nov.t_novedad = 1 entonces 
-		 	Esc("a")
-		Sino 
-			Si reg_nov.t_novedad = 2 entonces 
-				diferenciar:= diff_horas(reg_nov.h_inicio, reg_nov.h_fin)
-				j:= reg_nov.circuito_nro
-				Segun diferenciar hacer 
-					> 6: i:= 1; valor:= 1500
-					< 6: i:= 2; valor:= 1000
-				FinSegun 
-				usuario[i,j].monto:= usuario[i,j] + (valor*A[i,j])
-				usuario[i,j].paseos:= usuario[i,j].paseos + 1  
+		Procedimiento procesos_iguales() es 
+			Si reg_nov.t_novedad = 1 entonces 
+				Esc("a")
 			Sino 
-				Si reg_nov.t_novedad = 3 entonces
-				 	aux.f_mantenimiento:= fecha_actual()
+				Si reg_nov.t_novedad = 2 entonces 
+					diferenciar:= diff_horas(reg_nov.h_inicio, reg_nov.h_fin)
+					j:= reg_nov.circuito_nro
+					Segun diferenciar hacer 
+						> 6: i:= 1; valor:= 1500
+						< 6: i:= 2; valor:= 1000
+					FinSegun 
+					usuario[i,j].monto:= usuario[i,j] + (valor*A[i,j])
+					usuario[i,j].paseos:= usuario[i,j].paseos + 1  
 				Sino 
-				 	Esc("Baja de la unidad")
+					Si reg_nov.t_novedad = 3 entonces
+						aux.f_mantenimiento:= fecha_actual()
+					Sino 
+						Esc("Baja de la unidad")
+					FinSi
 				FinSi
 			FinSi
-		FinSi
-	FinProcedimiento
+		FinProcedimiento
 
  	Proceso 
 	 	Abrir E/(arch)
@@ -134,63 +134,63 @@ Accion Ejercicio1 (A: arreglo[1...2,1...6] ) es
 FinAccion
 
 Accion Ejercicio2 es 
- Ambiente
-	NOVEDADES = registro 
- 	 	clave = registro 
-		  	nro_serie: N(5)
-		 	modelo: AN(5)
+	Ambiente
+		NOVEDADES = registro 
+			clave = registro 
+				nro_serie: N(5)
+				modelo: AN(5)
+			FinRegistro
+			t_novedad: (1,2,3,4)
+			f_novedad: Fecha 
+			h_inicio: N(2)
+			h_fin: N(2)
+			circuito_nro: N(1)
+			id_usuario: AN(10)
 		FinRegistro
-	 	t_novedad: (1,2,3,4)
-	 	f_novedad: Fecha 
-	 	h_inicio: N(2)
-	 	h_fin: N(2)
-	 	circuito_nro: N(1)
-	 	id_usuario: AN(10)
-	FinRegistro
 
- 	arch_nov: archivo de NOVEDADES ordenado por clave 
- 	reg_nov: NOVEDADES
+		arch_nov: archivo de NOVEDADES ordenado por clave 
+		reg_nov: NOVEDADES
 
- 	USUARIOS = registro 
-	 	id_usuario: AN(10)
-	 	dni: N(8)
-	 	sexo: ("M", "F")
-	 	apeynom: AN(30)
-	 	domicilio: AN(30)
-	 	localidad: AN(30)
-		provincia: AN(30)
-		edad: N(2)
-	FinRegistro
+		USUARIOS = registro 
+			id_usuario: AN(10)
+			dni: N(8)
+			sexo: ("M", "F")
+			apeynom: AN(30)
+			domicilio: AN(30)
+			localidad: AN(30)
+			provincia: AN(30)
+			edad: N(2)
+		FinRegistro
 
- 	Funcion obtener_rango(x: entero): AN 
-		Segun x hacer 
-			1: Esc("menor 18")
-			2:	Esc("entre 18 y 35")
-			3: Esc("entre 35 y 75")
-			4: Esc("mayor a 75")		
-		FinSegun
-	FinFuncion
+		Funcion obtener_rango(x: entero): AN 
+			Segun x hacer 
+				1: Esc("menor 18")
+				2:	Esc("entre 18 y 35")
+				3: Esc("entre 35 y 75")
+				4: Esc("mayor a 75")		
+			FinSegun
+		FinFuncion
 
-	Procedimiento edad() es 
-		Si reg_usu.edad < 18 entonces 
-	 	 	j:=1
-		Sino 
-			Si (reg_usu.edad > 18) Y (reg_usu < 35) entonces
-			 	j:=2
+		Procedimiento edad() es 
+			Si reg_usu.edad < 18 entonces 
+				j:=1
 			Sino 
-				Si (reg_usu.edad > 35) Y (reg_usu.edad < 75) entonces
-				 	j:=3
+				Si (reg_usu.edad > 18) Y (reg_usu < 35) entonces
+					j:=2
 				Sino 
-				 	j:=4
+					Si (reg_usu.edad > 35) Y (reg_usu.edad < 75) entonces
+						j:=3
+					Sino 
+						j:=4
+					FinSi
 				FinSi
 			FinSi
-		FinSi
-	FinProcedimiento
+		FinProcedimiento
 
- 	arch_usu: archivo de USUARIOS indexado por id_usuario
- 	reg_usu: USUARIOS
- 	etario: arreglo[1...3,1...5] de enteros
- 	mayor, rango_may, i, j, diferenciar: entero
+		arch_usu: archivo de USUARIOS indexado por id_usuario
+		reg_usu: USUARIOS
+		etario: arreglo[1...3,1...5] de enteros
+		mayor, rango_may, i, j, diferenciar: entero
  	Proceso 
 	 	Abrir E/(arch_nov)
 	 	Abrir E/(arch_usu)

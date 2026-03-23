@@ -1,30 +1,30 @@
 Accion Ejercicio2 es 
- Ambiente 
-	EJEMPLARES = registro 
-		id_ejemplar: N(8)
-		id_libro: AN(30)
-		sucursal: (1...5)
-		digital: ("SI","NO")
-		disponible: logico 
-	FinRegistro
-	arch: archivo de EJEMPLARES 
-	reg: EJEMPLARES
-	A: arreglo[1...5,1...3,1...3] de entero
-	mayor, suc_mayor: entero
+ 	Ambiente 
+		EJEMPLARES = registro 
+			id_ejemplar: N(8)
+			id_libro: AN(30)
+			sucursal: (1...5)
+			digital: ("SI","NO")
+			disponible: logico 
+		FinRegistro
+		arch: archivo de EJEMPLARES 
+		reg: EJEMPLARES
+		A: arreglo[1...5,1...3,1...3] de entero
+		mayor, suc_mayor: entero
 
-	Funcion obtener_digital(i: entero): AN
-	 	Segun i hacer 
-			1: obtener_digital:= "Si"
-			2: obtener_digital:= "No"
-		FinSegun 
-	FinFuncion
+		Funcion obtener_digital(i: entero): AN
+			Segun i hacer 
+				1: obtener_digital:= "Si"
+				2: obtener_digital:= "No"
+			FinSegun 
+		FinFuncion
 
-	Funcion obtener_disponible(j: entero): AN 
-		Segun j hacer 
-			1: obtener_disponible:= "Si"
-			2: obtener_disponible:= "No"
-		FinSegun 
-	FinFuncion
+		Funcion obtener_disponible(j: entero): AN 
+			Segun j hacer 
+				1: obtener_disponible:= "Si"
+				2: obtener_disponible:= "No"
+			FinSegun 
+		FinFuncion
 
 	Proceso 
 		Abrir E/(arch)

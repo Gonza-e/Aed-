@@ -1,48 +1,48 @@
 Accion Ejercicio1 es 
- Ambiente 
-	Fecha = registro 
-		dia: N(2)
-		mes: N(2)
-		anio: N(4)
-	FinRegistro
-	
-	MILLAS = registro 
-		dni: N(8)
-		millas: N(10)
-		ult_carga: Fecha
-	FinRegistro
-	mill: archivo de MILLAS indexado por dni 
-	reg_m: MILLAS 
+ 	Ambiente 
+		Fecha = registro 
+			dia: N(2)
+			mes: N(2)
+			anio: N(4)
+		FinRegistro
+		
+		MILLAS = registro 
+			dni: N(8)
+			millas: N(10)
+			ult_carga: Fecha
+		FinRegistro
+		mill: archivo de MILLAS indexado por dni 
+		reg_m: MILLAS 
 
-	DESTINOS = registro 
-		origen: N(1)
-		destino: N(1)
-		millas: N(10)
-		duracion: N(2)
-	FinRegistro
-	dest: archivo de DESTINOS indexado por origen y destino 
-	reg_d: DESTINOS
-	DNI, ORIGEN, DESTINO, millas1, c_nuevos, cod, cod2: entero
+		DESTINOS = registro 
+			origen: N(1)
+			destino: N(1)
+			millas: N(10)
+			duracion: N(2)
+		FinRegistro
+		dest: archivo de DESTINOS indexado por origen y destino 
+		reg_d: DESTINOS
+		DNI, ORIGEN, DESTINO, millas1, c_nuevos, cod, cod2: entero
 
-	Procedimiento descontar_millas() es 
-		reg_m.millas:= reg_m.millas - reg_d.millas
-		Regrabar(mill,reg_m)
-	FinProcedimiento
+		Procedimiento descontar_millas() es 
+			reg_m.millas:= reg_m.millas - reg_d.millas
+			Regrabar(mill,reg_m)
+		FinProcedimiento
 
-	Procedimiento suma_de_millas() es 
-		Esc("Ingrese la cantidad de millas que desea cargar")
-		Leer(millas1)
-		reg_m.millas:= reg_m.millas + millas1
-		Regrabar(mill,reg_m)
-	FinProcedimiento
+		Procedimiento suma_de_millas() es 
+			Esc("Ingrese la cantidad de millas que desea cargar")
+			Leer(millas1)
+			reg_m.millas:= reg_m.millas + millas1
+			Regrabar(mill,reg_m)
+		FinProcedimiento
 
-	Procedimiento sumar_millas() 
-		Esc("Ingrese codigo de operacion (1: sumar millas, 2: salir)")
-		Leer(cod2)
-	 	Si cod2 = 1 entonces 
-		 	suma_de_millas() 
-		FinSi
-	FinProcedimiento
+		Procedimiento sumar_millas() 
+			Esc("Ingrese codigo de operacion (1: sumar millas, 2: salir)")
+			Leer(cod2)
+			Si cod2 = 1 entonces 
+				suma_de_millas() 
+			FinSi
+		FinProcedimiento
 
 	Proceso 
 		Abrir E/S (mill); Abrir E/(dest)

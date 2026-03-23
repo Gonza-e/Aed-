@@ -1,120 +1,126 @@
 Accion Ejercicio1 es 
- Ambiente 
- Fecha = registro 
-	 dia: N(2)
-	 mes: N(2)
-	 anio: N(4)
-	FinRegistro 
- INTERCAMBIOS = registro 
-	 cod_figurita: N(5)
-	 cod_amigo: N(5)
-	 f_solicitud: Fecha
-	FinRegistro
- ALBUM = registro 
-	 cod_figurita: N(5)
-	 cantidad: N(2)
-	 p_duplicados: ("Si","No")
-	FinRegistro 
- alb, salida: archivos de ALBUM ordenado por cod_figurita 
- reg_a, aux: ALBUM
- inter: archivo de INTERCAMBIOS ordenado por cod_figurita 
- reg_a: INTERCAMBIOS
- c_duplicadas: entero 
- Procedimiento leer_alb() es 
-	 Leer(alb, reg_a)
-	 	Si FDA(alb) entonces
-		 reg_a.cod_figurita:= HV
-		FinSi
-	FinProcedimiento
- Procedimiento leer_inter() es 
-	 Leer(inter_ reg_i) 
-	 	Si FDA(inter) entonces 
-		 reg_a.cod_figurita:= HV
-		FinSi 
-	FinProcedimiento 
- Procedimiento procesos_iguales() es 
-		Si reg_a.p_duplicados = "Si" entonces 
-		 aux.cantidad:= aux.cantidad + 1 
-		Sino 
-		 Esc("La figurita no acepta duplicado")
-		FinSi
-	FinProcedimiento
- Proceso 
-	 Abrir E/(alb)
-	 Abrir E/(inter)
-	 Abrir S/(salida)
-	 leer_alb()
-	 leer_inter()
-	 c_duplicadas:= 0 
-	 Mientras (reg_a.cod_figurita <> HV) o (reg_i.cod_figurita <> HV) hacer 
+ 	Ambiente 
+		Fecha = registro 
+			dia: N(2)
+			mes: N(2)
+			anio: N(4)
+		FinRegistro 
+
+		INTERCAMBIOS = registro 
+			cod_figurita: N(5)
+			cod_amigo: N(5)
+			f_solicitud: Fecha
+		FinRegistro
+
+		ALBUM = registro 
+			cod_figurita: N(5)
+			cantidad: N(2)
+			p_duplicados: ("Si","No")
+		FinRegistro 
+		alb, salida: archivos de ALBUM ordenado por cod_figurita 
+		reg_a, aux: ALBUM
+		inter: archivo de INTERCAMBIOS ordenado por cod_figurita 
+		reg_a: INTERCAMBIOS
+		c_duplicadas: entero 
+
+		Procedimiento leer_alb() es 
+			Leer(alb, reg_a)
+			Si FDA(alb) entonces
+				reg_a.cod_figurita:= HV
+			FinSi
+		FinProcedimiento
+
+		Procedimiento leer_inter() es 
+			Leer(inter_ reg_i) 
+			Si FDA(inter) entonces 
+				reg_a.cod_figurita:= HV
+			FinSi 
+		FinProcedimiento 
+
+		Procedimiento procesos_iguales() es 
+			Si reg_a.p_duplicados = "Si" entonces 
+				aux.cantidad:= aux.cantidad + 1 
+			Sino 
+				Esc("La figurita no acepta duplicado")
+			FinSi
+		FinProcedimiento
+		
+ 	Proceso 
+		Abrir E/(alb)
+		Abrir E/(inter)
+		Abrir S/(salida)
+		leer_alb()
+		leer_inter()
+		c_duplicadas:= 0 
+		Mientras (reg_a.cod_figurita <> HV) o (reg_i.cod_figurita <> HV) hacer 
 	 	 	Si reg_a.cod_figurita < reg_i.cod_figurita entonces
-			 sal:= reg_a
+			 	sal:= reg_a
 			Sino 
 				Si reg_a.cod_figurita = reg_i.cod_figurita entonces
-				 aux:= reg_a 
-				 Mientras aux.cod_figurita = reg_i.cod_figurita hacer
-				 	 procesos_iguales()
-					 c_duplicadas:= c_duplicadas + 1 
+				 	aux:= reg_a 
+				 	Mientras aux.cod_figurita = reg_i.cod_figurita hacer
+				 	 	procesos_iguales()
+					 	c_duplicadas:= c_duplicadas + 1 
 					FinMientras
-				 sal:= aux 
-				 Grabar(salida, sal)
-				 leer_inter()
+					sal:= aux 
+					Grabar(salida, sal)
+					leer_inter()
 				Sino 
 				 	Si reg_a.cod_figurita > reg_i.cod_figurita entonces 
 					 	Si diff_dias(7,reg_i.f_solicitud) entonces
-						 sal.cod_figurita:= reg_i.cod_figurita
-						 sal.cantidad:= 1 
-						 sal.p_duplicados:= "No"
-						 Grabar(salida, sal)
+							sal.cod_figurita:= reg_i.cod_figurita
+							sal.cantidad:= 1 
+							sal.p_duplicados:= "No"
+							Grabar(salida, sal)
 						Sino 
-						 aux:= reg_a 
-						 Mientras aux.cod_figurita = reg_i.cod_figurita hacer 
-						 	 leer_inter()
+							aux:= reg_a 
+							Mientras aux.cod_figurita = reg_i.cod_figurita hacer 
+								leer_inter()
 							FinMientras
 						FinSi
-					 leer_alb()
+					 	leer_alb()
 					FinSi
 				FinSi
 			FinSi
 		FinMientras
-	 Cerrar(alb)
-	 Cerrar(inter)
-	 Cerrar(salida)
-	 Esc("La cantidad de figuritas duplicadas es de", c_duplicadas)
+		Cerrar(alb)
+		Cerrar(inter)
+		Cerrar(salida)
+		Esc("La cantidad de figuritas duplicadas es de", c_duplicadas)
 	FinProceso
 FinAccion
 
 Accion Ejercicio2 es 
- Ambiente 
-	ALBUM = registro 
-		cod_usuario: N(5)
-		cod_figurita: N(5)
-		cantidad: N(2)
-		tipo: AN(1)
-	FinRegistro
-	alb: archivo de ALBUM ordenado por cod_usuario
-	reg_alb: ALBUM
+ 	Ambiente 
+		ALBUM = registro 
+			cod_usuario: N(5)
+			cod_figurita: N(5)
+			cantidad: N(2)
+			tipo: AN(1)
+		FinRegistro
+		alb: archivo de ALBUM ordenado por cod_usuario
+		reg_alb: ALBUM
 
-	AMIGOS = registro 
-		cod_usuario: N(5)
-		apellido: AN(15)
-		nombre: AN(15)
-		celular: N(10)
-	FinRegistro
-	ami: archivo de AMIGOS indexado por cod_usuario
-	reg_ami: AMIGOS
+		AMIGOS = registro 
+			cod_usuario: N(5)
+			apellido: AN(15)
+			nombre: AN(15)
+			celular: N(10)
+		FinRegistro
+		ami: archivo de AMIGOS indexado por cod_usuario
+		reg_ami: AMIGOS
 
-	A: arreglo[1...4,1...11] de ALBUM
-	porc, t_usuario, i, j, mayor, res_cod: entero   
-	ape, nom: AN
+		A: arreglo[1...4,1...11] de ALBUM
+		porc, t_usuario, i, j, mayor, res_cod: entero   
+		ape, nom: AN
 
-	Procedimiento obtener_album() es 
-		Segun i hacer 
-			1: "Dorado"
-			2: "Comun"
-			3: "Virtual"
-		FinSegun
-	FinProcedimiento
+		Procedimiento obtener_album() es 
+			Segun i hacer 
+				1: "Dorado"
+				2: "Comun"
+				3: "Virtual"
+			FinSegun
+		FinProcedimiento
 	
 	Proceso 
 		Abrir E/(alb)
