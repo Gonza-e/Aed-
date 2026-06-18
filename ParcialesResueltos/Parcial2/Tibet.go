@@ -1,29 +1,31 @@
 Accion Ejercicio1 (tipoventa: arreglo[1...10] de AN) es 
- Ambiente 
-	VENTAS = registro 
-		nro_venta: N(6)
-		nro_pro: N(6)
-		barco: (1,2,3)
-		t_venta: N(2)
-		estado: ("D","FT")
-	FinRegistro 
-	vent: archivo de VENTAS ordenado por nro_venta
-	reg_v: VENTAS 
-	PRODUCTOS = registro
-		barco: (1,2,3)
-		nro_pro: N(6)
-		tipo: ("I","P")
-		t_venta: N(2)
-		fumador: ("SI","NO")
-		cat: (1,2,3)
-	FinRegistro
-	prod: archivo de PRODUCTOS indexado por nro_pro y barco 
-	reg_p: PRODUCTOS
-	venta2y5, tipoFT, porcentaje: entero 
-	Procedimiento mod_categoria() es 
-		reg_p.cat:= 3 
-		Regrabar(prod,reg_p)
-	FinProcedimiento
+	Ambiente 
+		VENTAS = registro 
+			nro_venta: N(6)
+			nro_pro: N(6)
+			barco: (1,2,3)
+			t_venta: N(2)
+			estado: ("D","FT")
+		FinRegistro 
+		vent: archivo de VENTAS ordenado por nro_venta
+		reg_v: VENTAS 
+
+		PRODUCTOS = registro
+			barco: (1,2,3)
+			nro_pro: N(6)
+			tipo: ("I","P")
+			t_venta: N(2)
+			fumador: ("SI","NO")
+			cat: (1,2,3)
+		FinRegistro
+		prod: archivo de PRODUCTOS indexado por nro_pro y barco 
+		reg_p: PRODUCTOS
+		venta2y5, tipoFT, porcentaje: entero 
+
+		Procedimiento mod_categoria() es 
+			reg_p.cat:= 3 
+			Regrabar(prod,reg_p)
+		FinProcedimiento
 	Proceso 
 		Abrir E/S (prod)
 		Abrir E/(vent)
@@ -56,29 +58,31 @@ Accion Ejercicio1 (tipoventa: arreglo[1...10] de AN) es
 FinAccion
 
 Accion Ejercicio2 es 
- Ambiente
-	Fecha = registro 
-		dia: N(2)
-		mes: N(2)
-		anio: N(4)
-	FinRegistro
-	TOTALES = registro 
-		barco: (1,2,3)
-		fecha: Fecha
-		tipo: ("I","P")
-		importe: N(7,2)
-	FinRegistro
-	tot: archivo de TOTALES 
-	reg_t: TOTALES
-	A: arreglo[1...3,1...13,1...3] de reales
-	mayor, menos, mes_may, mes_men, bar, tip, k, i, j: entero
-	Funcion obtener_tipo(i:entero): AN 
-		Segun i hacer 
-			1: obtener_tipo:= "Indumentaria"
-			2: obtener_tipo:= "Perfumeria"
-		FinSegun
-	FinFuncion
- Proceso 
+	Ambiente
+		Fecha = registro 
+			dia: N(2)
+			mes: N(2)
+			anio: N(4)
+		FinRegistro
+		TOTALES = registro 
+			barco: (1,2,3)
+			fecha: Fecha
+			tipo: ("I","P")
+			importe: N(7,2)
+		FinRegistro
+		tot: archivo de TOTALES 
+		reg_t: TOTALES
+		A: arreglo[1...3,1...13,1...3] de reales
+		mayor, menos, mes_may, mes_men, bar, tip, k, i, j: entero
+
+		Funcion obtener_tipo(i:entero): AN 
+			Segun i hacer 
+				1: obtener_tipo:= "Indumentaria"
+				2: obtener_tipo:= "Perfumeria"
+			FinSegun
+		FinFuncion
+		
+	Proceso 
 		Abrir E/(tot)
 		Leer(tot,reg_t)
 		mayor:=0; menos:=HV; mes_may:=0; mes_men:=0; bar:=0, tip:=0
