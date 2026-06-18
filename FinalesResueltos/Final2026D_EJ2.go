@@ -62,7 +62,7 @@ Accion ej2 (Alf: arreglo["A"..."Z"] de entero) es
 			Fsi 
 
 			Mientras p <> nil hacer 
-				Grabar(sal,Enc(*p.letra,bandera)) 
+				Grabar(sal,REDOND(Enc(*p.letra,bandera))) 
 				p:= *p.prox 
 			FM 
 			limpiarLista()
