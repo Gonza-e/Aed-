@@ -117,7 +117,7 @@ Accion Ejercicio1 es
 							aux.disp:= verdadero
 						FinSi
 						leer_nov() 
-						Mientras aux.clave = reg_b.clave entonces 
+						Mientras aux.clave = reg_n.clave entonces 
 							procesos_iguales()
 							leer_nov()
 						FinMientras
