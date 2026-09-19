@@ -3,7 +3,7 @@ Accion ej1 es
 	sec: secuencia de caracteres 
 	v: caracter 
 
-	A: arreglo[1...2,1...4,1....5] de enteros 
+	A: arreglo[1...2,1...4,1...5] de enteros 
 	porc: real 
 	len_may1, may1, len_men1, men1, rol, len, men2, len_may2, may2, len_men3, men3: entero 
 
@@ -35,7 +35,7 @@ Accion ej1 es
 	FProcedimiento
 
 	Procedimiento consigna4()
-		si (A[1,i,j] + A[2,j,k]) < men2 entonces 
+		si (A[1,i,j] + A[2,i,j]) < men2 entonces 
 			rol:= i 
 			len:= j 
 			men2:= A[1,i,j] + A[2,i,j]
