@@ -27,9 +27,9 @@ accion 2025 es
 			clave = registro 
 				cod_lib: N(6)
 				cod_ejemplar: N(10)
-				tipo_novedad: (1...5)
-				fecha_novedad: Fecha 
-			FReg
+            FReg
+			tipo_novedad: (1...5)
+			fecha_novedad: Fecha 
 			id_usuario: N(20)
 		FReg
 		arch2: archivo de NOVEDADES ordenado por clave 
